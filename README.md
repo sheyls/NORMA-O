@@ -28,7 +28,7 @@ This ontology is the TBox component of the **NORMA Semantic Toolkit** — see [`
 - [Statistics](#statistics)
 - [Alignments](#alignments)
 - [Downloads](#downloads)
-- [Rights (ODRS)](#rights-odrs)
+- [Ontology Requirements Specification Document](#ontology-requirements-specification-document)
 - [Citation](#citation)
 - [License](#license)
 
@@ -172,7 +172,7 @@ NORMA-O imports and aligns with the following established vocabularies:
 | OWL/XML | via [WIDOCO docs](https://w3id.org/def/norma-o) | Auto-generated |
 | JSON-LD | via [WIDOCO docs](https://w3id.org/def/norma-o) | Auto-generated |
 | N-Triples | via [WIDOCO docs](https://w3id.org/def/norma-o) | Auto-generated |
-| Rights statement (PDF) | [`ODRS.pdf`](release/1.0.0/ODRS.pdf) | Human-readable ODRS rights statement |
+| Ontology Requirements Specification Document (PDF) | [`ords.pdf`](release/1.0.0/ords.pdf) | Requirements specification document |
 
 Content negotiation is supported at `https://w3id.org/def/norma-o`:
 
@@ -186,25 +186,15 @@ curl -L -H "Accept: application/rdf+xml" https://w3id.org/def/norma-o
 
 ---
 
-## Rights (ODRS)
+## Ontology Requirements Specification Document
 
-The following rights statement is provided following the [Open Data Rights Statement (ODRS) vocabulary](http://schema.theodi.org/odrs):
+The ontology requirements specification document is available as PDF here: [`ords.pdf`](release/1.0.0/ords.pdf).
 
-A human-readable PDF version is also available here: [`ODRS.pdf`](release/1.0.0/ODRS.pdf).
+<a href="release/1.0.0/ords.pdf">
+  <img src="release/1.0.0/ords-preview.png" alt="Ontology Requirements Specification Document preview" width="720">
+</a>
 
-```turtle
-@prefix odrs: <http://schema.theodi.org/odrs#> .
-@prefix norma: <https://w3id.org/def/norma-o#> .
-@prefix cc: <https://creativecommons.org/ns#> .
-@prefix dct: <http://purl.org/dc/terms/> .
-
-<https://w3id.org/def/norma-o>
-    odrs:license <https://creativecommons.org/licenses/by/4.0/> ;
-    odrs:attributionText "NORMA-O: The NORMA Ontology for Legal Norm Annotations. Sheyla Leyva-Sánchez, Ontology Engineering Group – UPM, 2026." ;
-    odrs:attributionURL <https://github.com/sheyls/NORMA-O> ;
-    odrs:copyrightNotice "Copyright © 2026 Sheyla Leyva-Sánchez and contributors." ;
-    odrs:reuseGuidelines <https://creativecommons.org/licenses/by/4.0/> .
-```
+*Click the preview image to open the full PDF.*
 
 ---
 
