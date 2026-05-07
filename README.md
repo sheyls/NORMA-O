@@ -87,7 +87,7 @@ The following competency questions (CQs) guided the ontology design and serve as
 
 The diagram below shows the principal classes and object properties of NORMA-O.
 
-![NORMA-O ontology diagram](norma-o.svg)
+![NORMA-O ontology diagram](release/1.0.0/norma-o.svg)
 
 *Diagram generated with [diagrams.net](https://www.diagrams.net/).*
 
@@ -167,8 +167,8 @@ NORMA-O imports and aligns with the following established vocabularies:
 
 | Format | File | Description |
 |---|---|---|
-| Turtle (preferred) | [`norma-ontology-v1.ttl`](norma-ontology-v1.ttl) | Primary source file, OWL 2 DL |
-| RDF/XML | [`norma-ontology-v1.rdf`](norma-ontology-v1.rdf) | Equivalent serialisation in RDF/XML |
+| Turtle (preferred) | [`norma-ontology-v1.ttl`](release/1.0.0/norma-ontology-v1.ttl) | Primary source file, OWL 2 DL |
+| RDF/XML | [`norma-ontology-v1.rdf`](release/1.0.0/norma-ontology-v1.rdf) | Equivalent serialisation in RDF/XML |
 | OWL/XML | via [WIDOCO docs](https://w3id.org/def/norma-o) | Auto-generated |
 | JSON-LD | via [WIDOCO docs](https://w3id.org/def/norma-o) | Auto-generated |
 | N-Triples | via [WIDOCO docs](https://w3id.org/def/norma-o) | Auto-generated |
