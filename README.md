@@ -157,7 +157,7 @@ NORMA-O imports and aligns with the following established vocabularies:
 |---|---|---|
 | [PROV-O](http://www.w3.org/ns/prov#) | `owl:imports` | Provenance of annotation activities and annotator agents |
 | [ELI](http://data.europa.eu/eli/ontology) | `owl:imports` | Work-level and expression-level references to legal sources |
-| [FOAF](http://xmlns.com/foaf/0.1/) | `owl:imports` | Agent and project metadata |
+| [FOAF](http://xmlns.com/foaf/0.1/) | `owl:imports` | Project metadata |
 | [SKOS](http://www.w3.org/2004/02/skos/core#) | Structural reuse | Controlled vocabulary classes and concept schemes |
 | [LKIF-Core](http://www.estrellaproject.org/lkif-core/) | Informative (`skos:closeMatch`, `skos:broadMatch`) | Semantic alignment with legal knowledge interchange format |
 
@@ -234,4 +234,4 @@ NORMA-O is the TBox component of a broader open resource for legal knowledge eng
 | [`sheyls/NORMA-O`](https://github.com/sheyls/NORMA-O) | This repository — ontology TBox only |
 | [`sheyls/norma-semantic-toolkit`](https://github.com/sheyls/norma-semantic-toolkit) | Full toolkit: annotation methodology, KG construction pipeline, SWRL engine, REST API, web app |
 | [WIDOCO documentation](https://w3id.org/def/norma-o) | Full HTML documentation with cross-reference of all terms |
-| [Zenodo community](https://zenodo.org/communities/norma) | All releases, datasets, and supplementary materials |
+| [Zenodo community](https://zenodo.org/communities/norma) | All releases and supplementary materials |
