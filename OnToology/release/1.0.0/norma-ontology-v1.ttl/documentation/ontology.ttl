@@ -22,7 +22,7 @@
                                 <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
                                 <http://purl.org/dc/terms/modified> "2026-04-28"^^xsd:date ;
                                 <http://purl.org/dc/terms/publisher> _:genid4 ;
-                                <http://purl.org/dc/terms/source> <https://github.com/sheyls/norma-semantic-toolkit> ;
+                                <http://purl.org/dc/terms/source> <https://github.com/sheyls/NORMA-O> ;
                                 <http://purl.org/dc/terms/title> "NORMA-O: The NORMA Ontology for Legal Norm Annotations"@en ;
                                 <http://purl.org/ontology/bibo/doi> "10.5281/zenodo.19765302" ;
                                 <http://purl.org/ontology/bibo/status> "Published"@en ;
@@ -948,7 +948,7 @@ rdf:value rdf:type owl:ObjectProperty .
 
 ###  https://w3id.org/def/norma-o
 <https://w3id.org/def/norma-o> rdf:type owl:NamedIndividual ;
-                               <http://xmlns.com/foaf/0.1/logo> <https://w3id.org/def/norma-o/assets/norma-o.png> .
+                               <http://xmlns.com/foaf/0.1/logo> <https://raw.githubusercontent.com/sheyls/NORMA-O/main/release/1.0.0/norma-o.svg> .
 
 
 ###  https://w3id.org/def/norma-o#Active
@@ -1324,8 +1324,8 @@ rdf:value rdf:type owl:ObjectProperty .
              <http://www.w3.org/2004/02/skos/core#prefLabel> "Under Review"@en .
 
 
-###  https://w3id.org/def/norma-o/assets/norma-o.png
-<https://w3id.org/def/norma-o/assets/norma-o.png> rdf:type owl:NamedIndividual .
+###  https://raw.githubusercontent.com/sheyls/NORMA-O/main/release/1.0.0/norma-o.svg
+<https://raw.githubusercontent.com/sheyls/NORMA-O/main/release/1.0.0/norma-o.svg> rdf:type owl:NamedIndividual .
 
 
 #################################################################

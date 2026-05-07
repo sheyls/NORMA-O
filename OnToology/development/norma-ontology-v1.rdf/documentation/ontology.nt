@@ -23,7 +23,7 @@ _:genid3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foa
 <https://w3id.org/def/norma-o> <http://purl.org/dc/terms/publisher> _:genid4 .
 _:genid4 <http://xmlns.com/foaf/0.1/name> "Sheyla Leyva-Sánchez" .
 _:genid4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person> .
-<https://w3id.org/def/norma-o> <http://purl.org/dc/terms/source> <https://github.com/sheyls/norma-semantic-toolkit> .
+<https://w3id.org/def/norma-o> <http://purl.org/dc/terms/source> <https://github.com/sheyls/NORMA-O> .
 <https://w3id.org/def/norma-o> <http://purl.org/dc/terms/title> "NORMA-O: The NORMA Ontology for Legal Norm Annotations"@en .
 <https://w3id.org/def/norma-o> <http://purl.org/ontology/bibo/doi> "10.5281/zenodo.19765302" .
 <https://w3id.org/def/norma-o> <http://purl.org/ontology/bibo/status> "Published"@en .
@@ -878,8 +878,8 @@ _:genid14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 # 
 # https://w3id.org/def/norma-o
 <https://w3id.org/def/norma-o> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
-<https://w3id.org/def/norma-o> <http://xmlns.com/foaf/0.1/logo> <https://w3id.org/def/norma-o/assets/norma-o.png> .
-<https://w3id.org/def/norma-o/assets/norma-o.png> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://w3id.org/def/norma-o> <http://xmlns.com/foaf/0.1/logo> <https://raw.githubusercontent.com/sheyls/NORMA-O/main/release/1.0.0/norma-o.svg> .
+<https://raw.githubusercontent.com/sheyls/NORMA-O/main/release/1.0.0/norma-o.svg> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 # 
 # https://w3id.org/def/norma-o#Active
 <https://w3id.org/def/norma-o#Active> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
@@ -1235,7 +1235,7 @@ _:genid14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://w3id.org/def/norma-o#UnderReview> <http://www.w3.org/2000/01/rdf-schema#label> "Under Review"@en .
 <https://w3id.org/def/norma-o#UnderReview> <http://www.w3.org/2004/02/skos/core#prefLabel> "Under Review"@en .
 # 
-# https://w3id.org/def/norma-o/assets/norma-o.png
+# https://raw.githubusercontent.com/sheyls/NORMA-O/main/release/1.0.0/norma-o.svg
 # 
 # 
 # 

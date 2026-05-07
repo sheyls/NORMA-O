@@ -196,7 +196,7 @@
     "@id" : "_:genid4"
   } ],
   "http://purl.org/dc/terms/source" : [ {
-    "@id" : "https://github.com/sheyls/norma-semantic-toolkit"
+    "@id" : "https://github.com/sheyls/NORMA-O"
   } ],
   "http://purl.org/dc/terms/title" : [ {
     "@language" : "en",
@@ -242,7 +242,7 @@
     "@value" : "1.0"
   } ],
   "http://xmlns.com/foaf/0.1/logo" : [ {
-    "@id" : "https://w3id.org/def/norma-o/assets/norma-o.png"
+    "@id" : "https://raw.githubusercontent.com/sheyls/NORMA-O/main/release/1.0.0/norma-o.svg"
   } ],
   "https://schema.org/includedInDataCatalog" : [ {
     "@id" : "https://zenodo.org/communities/norma"
@@ -2841,6 +2841,6 @@
     "@id" : "https://w3id.org/def/norma-o#AnnotationActivity"
   } ]
 }, {
-  "@id" : "https://w3id.org/def/norma-o/assets/norma-o.png",
+  "@id" : "https://raw.githubusercontent.com/sheyls/NORMA-O/main/release/1.0.0/norma-o.svg",
   "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
 } ]
