@@ -1206,25 +1206,14 @@
     <!-- https://w3id.org/def/norma-o#LegalAction -->
 
 
-    <owl:Class rdf:about="https://w3id.org/def/norma-o#LegalAction">
-        <rdfs:comment xml:lang="en">A normalized legal action that is prescribed, prohibited, permitted, or recommended by a regulative norm. NORMA pipeline consumers may work with the literal shortcut `norma:actionText` for low-ceremony use and mint LegalAction individuals only when the knowledge graph needs action-level reuse across norms.</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/def/norma-o"/>
-        <rdfs:label xml:lang="en">Legal Action</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl#Legal_Action"/>
-    </owl:Class>
+    <owl:Class rdf:about="https://w3id.org/def/norma-o#LegalAction"/>
     
 
 
     <!-- https://w3id.org/def/norma-o#LegalAgent -->
 
 
-    <owl:Class rdf:about="https://w3id.org/def/norma-o#LegalAgent">
-        <rdfs:comment xml:lang="en">An entity that bears the legally relevant role of subject of a regulative norm: the party that is obliged, prohibited, permitted, or recommended to perform a legal action.</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/def/norma-o"/>
-        <rdfs:label xml:lang="en">Legal Agent</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl#Legal_Person"/>
-        <skos:scopeNote xml:lang="en">Conceptually close to lkif-la:Legal_Person (Natural_Person, Private_Legal_Person, Public_Body). rdfs:seeAlso is used rather than rdfs:subClassOf because lkif-la:Legal_Person also covers Legislative_Body — entities that utter norms rather than bear them — which falls outside NORMA&apos;s LegalAgent role, and because lkif-core/legal-action.owl is not imported. foaf:Agent is intentionally not asserted as a TBox parent because it is broader than legal personhood (it includes software agents and other non-legal entities); FOAF classes remain available for instance-level annotation.</skos:scopeNote>
-    </owl:Class>
+    <owl:Class rdf:about="https://w3id.org/def/norma-o#LegalAgent"/>
     
 
 
@@ -1357,11 +1346,6 @@
 
     <owl:Class rdf:about="https://w3id.org/def/norma-o#RegulativeNorm">
         <rdfs:subClassOf rdf:resource="https://w3id.org/def/norma-o#NormativeContent"/>
-        <rdfs:comment xml:lang="en">A normative content item that regulates conduct by prescribing, prohibiting, permitting, or recommending a legal action.</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="https://w3id.org/def/norma-o"/>
-        <rdfs:label xml:lang="en">Regulative Norm</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Norm"/>
-        <skos:scopeNote xml:lang="en">Conceptually close to lkif:Norm in LKIF-Core. rdfs:seeAlso is used rather than rdfs:subClassOf because lkif:Norm is equivalentClass to a restriction on lkif:qualifies (a property NORMA does not use) and because LKIF axiomatises the deontic operators as interdefinable (lkif:Obligation owl:equivalentClass lkif:Prohibition), which would conflict with NORMA&apos;s pairwise disjointness of regulative subclasses if formal subsumption were asserted.</skos:scopeNote>
     </owl:Class>
     
 
@@ -1412,6 +1396,55 @@
      -->
 
 
+    
+
+
+    <!-- http://www.estrellaproject.org/lkif-core/legal-action.owl#Legal_Action -->
+
+
+    <owl:NamedIndividual rdf:about="http://www.estrellaproject.org/lkif-core/legal-action.owl#Legal_Action"/>
+    
+
+
+    <!-- http://www.estrellaproject.org/lkif-core/legal-action.owl#Legal_Person -->
+
+
+    <owl:NamedIndividual rdf:about="http://www.estrellaproject.org/lkif-core/legal-action.owl#Legal_Person"/>
+    
+
+
+    <!-- http://www.estrellaproject.org/lkif-core/norm.owl#Norm -->
+
+
+    <owl:NamedIndividual rdf:about="http://www.estrellaproject.org/lkif-core/norm.owl#Norm"/>
+    
+
+
+    <!-- http://www.estrellaproject.org/lkif-core/norm.owl#Obligation -->
+
+
+    <owl:NamedIndividual rdf:about="http://www.estrellaproject.org/lkif-core/norm.owl#Obligation"/>
+    
+
+
+    <!-- http://www.estrellaproject.org/lkif-core/norm.owl#Permission -->
+
+
+    <owl:NamedIndividual rdf:about="http://www.estrellaproject.org/lkif-core/norm.owl#Permission"/>
+    
+
+
+    <!-- http://www.estrellaproject.org/lkif-core/norm.owl#Prohibition -->
+
+
+    <owl:NamedIndividual rdf:about="http://www.estrellaproject.org/lkif-core/norm.owl#Prohibition"/>
+    
+
+
+    <!-- http://www.estrellaproject.org/lkif-core/norm.owl#Soft_Law -->
+
+
+    <owl:NamedIndividual rdf:about="http://www.estrellaproject.org/lkif-core/norm.owl#Soft_Law"/>
     
 
 
@@ -1647,6 +1680,24 @@
     
 
 
+    <!-- https://w3id.org/def/norma-o#LegalAction -->
+
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/def/norma-o#LegalAction">
+        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl#Legal_Action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/def/norma-o#LegalAgent -->
+
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/def/norma-o#LegalAgent">
+        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/legal-action.owl#Legal_Person"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- https://w3id.org/def/norma-o#Low -->
 
 
@@ -1773,6 +1824,7 @@
 
 
     <owl:NamedIndividual rdf:about="https://w3id.org/def/norma-o#Obligation">
+        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Obligation"/>
         <skos:notation>OBL</skos:notation>
     </owl:NamedIndividual>
     
@@ -1814,6 +1866,7 @@
 
 
     <owl:NamedIndividual rdf:about="https://w3id.org/def/norma-o#Permission">
+        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Permission"/>
         <skos:notation>PER</skos:notation>
     </owl:NamedIndividual>
     
@@ -1823,6 +1876,7 @@
 
 
     <owl:NamedIndividual rdf:about="https://w3id.org/def/norma-o#Prohibition">
+        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Prohibition"/>
         <skos:notation>PRH</skos:notation>
     </owl:NamedIndividual>
     
@@ -1833,6 +1887,15 @@
 
     <owl:NamedIndividual rdf:about="https://w3id.org/def/norma-o#Recommendation">
         <skos:notation>REC</skos:notation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://w3id.org/def/norma-o#RegulativeNorm -->
+
+
+    <owl:NamedIndividual rdf:about="https://w3id.org/def/norma-o#RegulativeNorm">
+        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Norm"/>
     </owl:NamedIndividual>
     
 
@@ -1874,12 +1937,12 @@
     <owl:NamedIndividual rdf:about="https://w3id.org/def/norma-o#SoftLaw">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <rdf:type rdf:resource="https://w3id.org/def/norma-o#BindingForce"/>
+        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Soft_Law"/>
         <skos:inScheme rdf:resource="https://w3id.org/def/norma-o#BindingForceScheme"/>
         <skos:topConceptOf rdf:resource="https://w3id.org/def/norma-o#BindingForceScheme"/>
         <skos:notation>SOFT_LAW</skos:notation>
         <rdfs:comment xml:lang="en">Binding force category for non-binding guidance, recommendations, codes of conduct, or policy instruments.</rdfs:comment>
         <rdfs:label xml:lang="en">Soft Law</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Soft_Law"/>
         <skos:prefLabel xml:lang="en">Soft Law</skos:prefLabel>
     </owl:NamedIndividual>
     
@@ -1949,6 +2012,17 @@
      -->
 
 
+    <rdf:Description rdf:about="https://w3id.org/def/norma-o#LegalAction">
+        <rdfs:comment xml:lang="en">A normalized legal action that is prescribed, prohibited, permitted, or recommended by a regulative norm. NORMA pipeline consumers may work with the literal shortcut `norma:actionText` for low-ceremony use and mint LegalAction individuals only when the knowledge graph needs action-level reuse across norms.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://w3id.org/def/norma-o"/>
+        <rdfs:label xml:lang="en">Legal Action</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://w3id.org/def/norma-o#LegalAgent">
+        <rdfs:comment xml:lang="en">An entity that bears the legally relevant role of subject of a regulative norm: the party that is obliged, prohibited, permitted, or recommended to perform a legal action.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://w3id.org/def/norma-o"/>
+        <rdfs:label xml:lang="en">Legal Agent</rdfs:label>
+        <skos:scopeNote xml:lang="en">Conceptually close to lkif-la:Legal_Person (Natural_Person, Private_Legal_Person, Public_Body). rdfs:seeAlso is used rather than rdfs:subClassOf because lkif-la:Legal_Person also covers Legislative_Body — entities that utter norms rather than bear them — which falls outside NORMA&apos;s LegalAgent role, and because lkif-core/legal-action.owl is not imported. foaf:Agent is intentionally not asserted as a TBox parent because it is broader than legal personhood (it includes software agents and other non-legal entities); FOAF classes remain available for instance-level annotation.</skos:scopeNote>
+    </rdf:Description>
     <rdf:Description rdf:about="https://w3id.org/def/norma-o#NegativeRecommendation">
         <rdfs:comment xml:lang="en">A regulative norm stating that a legal action is discouraged.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="https://w3id.org/def/norma-o"/>
@@ -1958,24 +2032,27 @@
         <rdfs:comment xml:lang="en">A regulative norm stating that a legal action is required.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="https://w3id.org/def/norma-o"/>
         <rdfs:label xml:lang="en">Obligation</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Obligation"/>
     </rdf:Description>
     <rdf:Description rdf:about="https://w3id.org/def/norma-o#Permission">
         <rdfs:comment xml:lang="en">A regulative norm stating that a legal action is allowed.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="https://w3id.org/def/norma-o"/>
         <rdfs:label xml:lang="en">Permission</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Permission"/>
     </rdf:Description>
     <rdf:Description rdf:about="https://w3id.org/def/norma-o#Prohibition">
         <rdfs:comment xml:lang="en">A regulative norm stating that a legal action is forbidden.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="https://w3id.org/def/norma-o"/>
         <rdfs:label xml:lang="en">Prohibition</rdfs:label>
-        <rdfs:seeAlso rdf:resource="http://www.estrellaproject.org/lkif-core/norm.owl#Prohibition"/>
     </rdf:Description>
     <rdf:Description rdf:about="https://w3id.org/def/norma-o#Recommendation">
         <rdfs:comment xml:lang="en">A regulative norm stating that a legal action is recommended.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="https://w3id.org/def/norma-o"/>
         <rdfs:label xml:lang="en">Recommendation</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="https://w3id.org/def/norma-o#RegulativeNorm">
+        <rdfs:comment xml:lang="en">A normative content item that regulates conduct by prescribing, prohibiting, permitting, or recommending a legal action.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="https://w3id.org/def/norma-o"/>
+        <rdfs:label xml:lang="en">Regulative Norm</rdfs:label>
+        <skos:scopeNote xml:lang="en">Conceptually close to lkif:Norm in LKIF-Core. rdfs:seeAlso is used rather than rdfs:subClassOf because lkif:Norm is equivalentClass to a restriction on lkif:qualifies (a property NORMA does not use) and because LKIF axiomatises the deontic operators as interdefinable (lkif:Obligation owl:equivalentClass lkif:Prohibition), which would conflict with NORMA&apos;s pairwise disjointness of regulative subclasses if formal subsumption were asserted.</skos:scopeNote>
     </rdf:Description>
     
 
@@ -2015,5 +2092,4 @@
 
 
 <!-- Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/ -->
-
 

@@ -153,6 +153,27 @@
   "@id" : "http://purl.org/vocab/vann/preferredNamespaceUri",
   "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
 }, {
+  "@id" : "http://www.estrellaproject.org/lkif-core/legal-action.owl#Legal_Action",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+}, {
+  "@id" : "http://www.estrellaproject.org/lkif-core/legal-action.owl#Legal_Person",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+}, {
+  "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Norm",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+}, {
+  "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Obligation",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+}, {
+  "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Permission",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+}, {
+  "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Prohibition",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+}, {
+  "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Soft_Law",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ]
+}, {
   "@id" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#value",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
 }, {
@@ -745,7 +766,7 @@
   } ]
 }, {
   "@id" : "https://w3id.org/def/norma-o#LegalAction",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class", "http://www.w3.org/2002/07/owl#NamedIndividual" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
     "@language" : "en",
     "@value" : "A normalized legal action that is prescribed, prohibited, permitted, or recommended by a regulative norm. NORMA pipeline consumers may work with the literal shortcut `norma:actionText` for low-ceremony use and mint LegalAction individuals only when the knowledge graph needs action-level reuse across norms."
@@ -762,7 +783,7 @@
   } ]
 }, {
   "@id" : "https://w3id.org/def/norma-o#LegalAgent",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class", "http://www.w3.org/2002/07/owl#NamedIndividual" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
     "@language" : "en",
     "@value" : "An entity that bears the legally relevant role of subject of a regulative norm: the party that is obliged, prohibited, permitted, or recommended to perform a legal action."
@@ -1111,11 +1132,11 @@
     "@language" : "en",
     "@value" : "Obligation"
   } ],
-  "http://www.w3.org/2000/01/rdf-schema#seeAlso" : [ {
-    "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Obligation"
-  } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/def/norma-o#RegulativeNorm"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#seeAlso" : [ {
+    "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Obligation"
   } ],
   "http://www.w3.org/2004/02/skos/core#notation" : [ {
     "@value" : "OBL"
@@ -1188,11 +1209,11 @@
     "@language" : "en",
     "@value" : "Permission"
   } ],
-  "http://www.w3.org/2000/01/rdf-schema#seeAlso" : [ {
-    "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Permission"
-  } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/def/norma-o#RegulativeNorm"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#seeAlso" : [ {
+    "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Permission"
   } ],
   "http://www.w3.org/2004/02/skos/core#notation" : [ {
     "@value" : "PER"
@@ -1211,11 +1232,11 @@
     "@language" : "en",
     "@value" : "Prohibition"
   } ],
-  "http://www.w3.org/2000/01/rdf-schema#seeAlso" : [ {
-    "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Prohibition"
-  } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/def/norma-o#RegulativeNorm"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#seeAlso" : [ {
+    "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Prohibition"
   } ],
   "http://www.w3.org/2004/02/skos/core#notation" : [ {
     "@value" : "PRH"
@@ -1242,7 +1263,7 @@
   } ]
 }, {
   "@id" : "https://w3id.org/def/norma-o#RegulativeNorm",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class", "http://www.w3.org/2002/07/owl#NamedIndividual" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
     "@language" : "en",
     "@value" : "A normative content item that regulates conduct by prescribing, prohibiting, permitting, or recommending a legal action."
@@ -1254,11 +1275,11 @@
     "@language" : "en",
     "@value" : "Regulative Norm"
   } ],
-  "http://www.w3.org/2000/01/rdf-schema#seeAlso" : [ {
-    "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Norm"
-  } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/def/norma-o#NormativeContent"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#seeAlso" : [ {
+    "@id" : "http://www.estrellaproject.org/lkif-core/norm.owl#Norm"
   } ],
   "http://www.w3.org/2004/02/skos/core#scopeNote" : [ {
     "@language" : "en",
