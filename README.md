@@ -172,6 +172,7 @@ NORMA-O imports and aligns with the following established vocabularies:
 | OWL/XML | via [WIDOCO docs](https://w3id.org/def/norma-o) | Auto-generated |
 | JSON-LD | via [WIDOCO docs](https://w3id.org/def/norma-o) | Auto-generated |
 | N-Triples | via [WIDOCO docs](https://w3id.org/def/norma-o) | Auto-generated |
+| Rights statement (PDF) | [`ODRS.pdf`](release/1.0.0/ODRS.pdf) | Human-readable ODRS rights statement |
 
 Content negotiation is supported at `https://w3id.org/def/norma-o`:
 
@@ -188,6 +189,8 @@ curl -L -H "Accept: application/rdf+xml" https://w3id.org/def/norma-o
 ## Rights (ODRS)
 
 The following rights statement is provided following the [Open Data Rights Statement (ODRS) vocabulary](http://schema.theodi.org/odrs):
+
+A human-readable PDF version is also available here: [`ODRS.pdf`](release/1.0.0/ODRS.pdf).
 
 ```turtle
 @prefix odrs: <http://schema.theodi.org/odrs#> .
