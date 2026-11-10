@@ -242,6 +242,32 @@ python release/2.0.0/deriv/tests/check_deriv.py   # 140 checks
 
 Other producers may derive the same conclusions with different tools; the `normad` vocabulary, not the rule set, is the part of the ontology. Section [5 of What's new](release/2.0.0/WHATS-NEW.md#5-what-can-now-be-derived) details what can be derived with an OWL reasoner alone and what needs the rule set.
 
+### Using NORMA-O from a project
+
+A project that uses NORMA-O does not need to copy its files. It can install a pinned release as a Python package, which ships the ontology, the `normad` module, the rule set and the `norma` engine:
+
+```bash
+pip install "norma-o @ git+https://github.com/sheyls/NORMA-O@v2.0.0"            # add [reason] for HermiT checks (needs Java)
+norma my-norms.ttl                  # check, derive, bundle and report; outputs in ./build
+norma check my-norms.ttl            # only check what the derivation needs
+```
+
+The annotation imports NORMA-O by its published version IRI, never by a file path:
+
+```turtle
+<https://example.org/my-norms> a owl:Ontology ;
+    owl:imports <https://w3id.org/def/norma-o/2.0> .
+```
+
+The engine warns if an annotation imports another version, and the bundles it writes import `https://w3id.org/def/norma-o/2.0` and `https://w3id.org/def/norma-o/deriv/1.0`. In Python, `norma_o.load()` parses an annotation and resolves those imports to the copies in the package, so it works offline and always with the installed version:
+
+```python
+import norma_o
+g = norma_o.load("my-norms.ttl")      # annotation + NORMA-O 2.0 (+ normad if imported)
+```
+
+The package version follows the ontology version (2.0.x); fixes to the engine or rule set raise the patch number without changing the ontology or its IRIs.
+
 ---
 
 ## Statistics

@@ -18,8 +18,9 @@ passed with --variant NAME=FILE. The engine then, for each reading:
            relations, the prevalence ladder (topological order, cycles) and, per
            case, institutional facts chained to a fixpoint, the applicability and
            reach of every norm, and weak permissions
-  bundle   writes ONE self-contained file per reading: the annotation plus its
-           derivation, importing this folder's ontology files
+  bundle   writes ONE file per reading: the annotation plus its derivation,
+           importing NORMA-O 2.0 and the derivation module by their published
+           version IRIs
   reason   (with --reason; needs owlready2 and Java) loads ontology + bundle in
            HermiT and reports whether they are consistent
   report   a review sheet (one row per norm) and the status of every norm in
@@ -28,7 +29,9 @@ passed with --variant NAME=FILE. The engine then, for each reading:
 Everything is written to <annotation folder>/build/. The annotation file is
 never modified: as `normad:DerivationActivity` requires, a derived graph is
 regenerated, never merged back into the annotation it was derived from.
-Requires rdflib (deriv/requirements.txt).
+Requires rdflib (deriv/requirements.txt). Installed as a package
+(pip install "norma-o @ git+https://github.com/sheyls/NORMA-O@<tag>"), the
+same engine is the `norma` command.
 """
 from __future__ import annotations
 
@@ -51,6 +54,10 @@ N = Namespace("https://w3id.org/def/norma-o#")
 ND = Namespace("https://w3id.org/def/norma-o/deriv#")
 GAP = Namespace("https://example.org/norma-gap#")   # optional project vocabulary for gaps, if present
 REG = ("Obligation", "Prohibition", "Permission", "Facultative", "Recommendation", "NegativeRecommendation")
+# Published IRIs of what this engine implements; the bundle imports the version IRIs.
+NORMA_IRIS = {"https://w3id.org/def/norma-o", "https://w3id.org/def/norma-o/2.0"}
+DERIV_IRIS = {"https://w3id.org/def/norma-o/deriv", "https://w3id.org/def/norma-o/deriv/1.0"}
+IMPORTS = ("https://w3id.org/def/norma-o/2.0", "https://w3id.org/def/norma-o/deriv/1.0")
 
 
 def say(step: str, msg: str) -> None:
@@ -118,6 +125,12 @@ def check(job: Job) -> bool:
         warnings["case holding only some triggers of a condition"] = sorted(partial)
     if not cases:
         warnings["no norma:FactPattern: nothing is evaluated per case"] = ["(annotation)"]
+    imports = {str(o).rstrip("#/") for o in g.objects(None, OWL.imports)}
+    other = sorted(i for i in imports if i.startswith("https://w3id.org/def/norma-o") and i not in NORMA_IRIS | DERIV_IRIS)
+    if other:
+        warnings["NORMA-O import other than 2.0 (this engine implements 2.0)"] = other
+    elif not imports & NORMA_IRIS:
+        warnings["no owl:imports <https://w3id.org/def/norma-o/2.0>"] = ["(annotation)"]
     ok = True
     for kind, items in (("ERROR", errors), ("warn", warnings)):
         for what, xs in items.items():
@@ -160,10 +173,10 @@ def bundle(job: Job) -> None:
             g.remove((o, None, None))
         iri = URIRef((str(onto) if onto is not None else "https://example.org/" + job.ann.stem) + "/" + job.stem(var))
         g.add((iri, RDF.type, OWL.Ontology))
-        for p, o in header:                         # label, licence, seeAlso… carried over; imports made local
+        for p, o in header:                         # label, licence, seeAlso… carried over
             g.add((iri, p, o))
-        for f in ("norma-ontology-v2.ttl", "norma-o-deriv.ttl"):
-            g.add((iri, OWL.imports, URIRef((HERE / f).as_uri())))
+        for i in IMPORTS:                           # by published IRI, never by a local path
+            g.add((iri, OWL.imports, URIRef(i)))
         g.serialize(job.bundle(var), format="turtle")
         say("bundle", f"{name or 'base reading'}: {rel(job.bundle(var))} ({len(g)} triples)")
 

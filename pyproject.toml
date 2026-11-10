@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "norma-o"
+version = "2.0.0"
+description = "NORMA-O 2.0: ontology for legal norms, derivation module, reference rule set and the `norma` engine"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "CC-BY-4.0" }
+authors = [{ name = "Sheyla Leyva-Sánchez" }]
+dependencies = ["rdflib>=7.0"]
+
+[project.optional-dependencies]
+# HermiT consistency checks (engine --reason, deriv/tests): also needs Java.
+reason = ["owlready2>=0.46"]
+
+[project.scripts]
+norma = "norma_o.engine:main"
+
+[project.urls]
+Homepage = "https://w3id.org/def/norma-o"
+Source = "https://github.com/sheyls/NORMA-O"
+DOI = "https://doi.org/10.5281/zenodo.24116269"
+
+# The release folder is published as is: the wheel maps its files into the
+# norma_o package instead of moving them.
+[tool.hatch.build.targets.wheel]
+packages = ["src/norma_o"]
+exclude = ["**/__pycache__", "**/*.derived.ttl", "**/*.derived.nt"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"release/2.0.0/norma-ontology-v2.ttl" = "norma_o/norma-ontology-v2.ttl"
+"release/2.0.0/norma-o-deriv.ttl" = "norma_o/norma-o-deriv.ttl"
+"release/2.0.0/engine.py" = "norma_o/engine.py"
+"release/2.0.0/deriv/derive.py" = "norma_o/deriv/derive.py"
+"release/2.0.0/deriv/prevalence.py" = "norma_o/deriv/prevalence.py"
+"release/2.0.0/deriv/rules" = "norma_o/deriv/rules"
+
+[tool.hatch.build.targets.sdist]
+include = ["pyproject.toml", "README.md", "src/norma_o", "release/2.0.0/norma-ontology-v2.ttl",
+           "release/2.0.0/norma-o-deriv.ttl", "release/2.0.0/engine.py", "release/2.0.0/deriv/derive.py",
+           "release/2.0.0/deriv/prevalence.py", "release/2.0.0/deriv/rules"]
