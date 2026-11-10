@@ -1,9 +1,0 @@
-__pycache__/
-*.py[cod]
-.venv/
-venv/
-.DS_Store
-# outputs of deriv/derive.py when run without -o
-*.derived.ttl
-*.derived.nt
-sync_rdf.py

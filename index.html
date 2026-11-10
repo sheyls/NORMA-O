@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>NORMA-O</title>
+    <link rel="stylesheet" href="vocab/themes/blue/style.css" type="text/css" media="print, projection, screen" />
+    <script src="vocab/js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="vocab/js/bootstrap.js"></script>
+    <script type="text/javascript" id="js">
+	    $(document).ready(function() 
+		    { 
+		    	$("#tablesorter-demo").tablesorter(); 
+		    	$("#tablesorter-demo").stickyTableHeaders(); 
+		    	$('[data-toggle="tooltip"]').tooltip(); 
+		    } 
+	    ); 
+    </script>
+
+    <!-- Le styles -->
+    <link href="vocab/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="vocab/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+  </head>
+
+  <body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Vocabularies</a></li>
+        <li><a href="report.html">Vocabulary report</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+ </div>
+    <div class="container">
+
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <h1>NORMA-O landing page</h1>
+        <p class="lead">Here you can find the list of vocabularies that have been found on NORMA-O.</p>
+      </div>
+      <hr>
+<div class="row"> 
+</div>
+<br>
+<table id="tablesorter-demo" class="tablesorter table table-hover table-responsive">
+<thead>
+<tr>
+<th class="col-md-2">Ontology</th>
+<th class="col-md-1">Serialization</th>
+<th class="col-md-2">License</th>
+<th class="col-md-1">Language</th>
+<th class="col-md-6">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr id="tr1">
+<td><a href = "https://w3id.org/def/norma-o#" target="_blank">NORMA-O: The NORMA Ontology for Legal Norm Annotations</a> </td><td>
+<a href="ontologies/norma-ontology-v1.ttl"><span class="label label-primary">TURTLE</span></a>
+</td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"> <span class="label label-success">https://creativecommons.org/l...</span> </a></td>
+<td><a href="http://lexvo.org/id/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
+<td>
+<p id="collapse1" data-toggle="collapse" >
+The NORMA ontology is a formal semantic model for representing machine-readable legal norm annotations as reusable knowledge graph resources. ... <a class="more1">See more</a>
+</p>
+<script>
+$('#collapse1').click(function () {
+if($('a').hasClass('more1'))
+{
+$('#collapse1').html('The NORMA ontology is a formal semantic model for representing machine-readable legal norm annotations as reusable knowledge graph resources. It distinguishes between regulative norms and constitutive rules; represents legal conditions, their evaluated outcomes, and branch-sensitive activation through a TriggerEvent n-ary relation pattern; and captures the legal agents, actions, objects, sources, provenance metadata, lifecycle status, review status, extraction method, and controlled classification values needed for traceable and interoperable publication. The ontology aligns with PROV-O for provenance, ELI for legal resource modelling, FOAF for agent-oriented metadata, and SKOS for controlled vocabularies, and provides informative alignments with LKIF-Core via SKOS mapping properties.  <a class="less1">See less<a>'); 
+}
+else
+{      
+$('#collapse1').html('The NORMA ontology is a formal semantic model for representing machine-readable legal norm annotations as reusable knowledge graph resources. ...  <a  class="more1">See more</a>'); 
+}
+}); 
+</script>
+</td>
+</tr><tr id="tr2">
+<td><a href = "https://w3id.org/def/norma-o#" target="_blank">NORMA-O: The NORMA Ontology for Legal Norm Annotations</a> </td><td>
+<a href="ontologies/norma-ontology-v1.rdf"><span class="label label-primary">RDF/XML</span></a>
+</td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"> <span class="label label-success">https://creativecommons.org/l...</span> </a></td>
+<td><a href="http://lexvo.org/id/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
+<td>
+<p id="collapse2" data-toggle="collapse" >
+The NORMA ontology is a formal semantic model for representing machine-readable legal norm annotations as reusable knowledge graph resources. ... <a class="more2">See more</a>
+</p>
+<script>
+$('#collapse2').click(function () {
+if($('a').hasClass('more2'))
+{
+$('#collapse2').html('The NORMA ontology is a formal semantic model for representing machine-readable legal norm annotations as reusable knowledge graph resources. It distinguishes between regulative norms and constitutive rules; represents legal conditions, their evaluated outcomes, and branch-sensitive activation through a TriggerEvent n-ary relation pattern; and captures the legal agents, actions, objects, sources, provenance metadata, lifecycle status, review status, extraction method, and controlled classification values needed for traceable and interoperable publication. The ontology aligns with PROV-O for provenance, ELI for legal resource modelling, FOAF for agent-oriented metadata, and SKOS for controlled vocabularies, and provides informative alignments with LKIF-Core via SKOS mapping properties.  <a class="less2">See less<a>'); 
+}
+else
+{      
+$('#collapse2').html('The NORMA ontology is a formal semantic model for representing machine-readable legal norm annotations as reusable knowledge graph resources. ...  <a  class="more2">See more</a>'); 
+}
+}); 
+</script>
+</td>
+</tr><tr id="tr3">
+<td><a href = "https://w3id.org/def/norma-o#" target="_blank">NORMA-O: The NORMA Ontology for Legal Norm Annotations</a> </td><td>
+<a href="ontologies/norma-ontology-v2.ttl"><span class="label label-primary">TURTLE</span></a>
+</td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"> <span class="label label-success">https://creativecommons.org/l...</span> </a></td>
+<td><a href="http://lexvo.org/id/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
+<td>
+<p id="collapse3" data-toggle="collapse" >
+The NORMA ontology is a formal semantic model for representing machine-readable legal norm annotations as reusable knowledge graph resources. ... <a class="more3">See more</a>
+</p>
+<script>
+$('#collapse3').click(function () {
+if($('a').hasClass('more3'))
+{
+$('#collapse3').html('The NORMA ontology is a formal semantic model for representing machine-readable legal norm annotations as reusable knowledge graph resources. It distinguishes between regulative norms and constitutive rules; represents legal conditions, their evaluated outcomes, and branch-sensitive activation through a TriggerEvent n-ary relation pattern; and captures the legal agents, actions, objects, sources, provenance metadata, lifecycle status, review status, extraction method, and controlled classification values needed for traceable and interoperable publication. The ontology aligns with PROV-O for provenance, ELI for legal resource modelling, FOAF for agent-oriented metadata, and SKOS for controlled vocabularies, and provides informative alignments with LKIF-Core via SKOS mapping properties. Regulative norms are formally grounded in Standard Deontic Logic, whose interdefinability of operators (F(X) ≡ O(¬X), P(X) ≡ ¬O(¬X), and facultativeness as P(X) ∧ P(¬X)) is captured through action negation and inter-norm deontic equivalence and contradiction relations, and in Hohfeld's scheme of first-order jural correlatives (duty and claim, privilege and no-right), represented as reified, directed legal positions between a holder and a counterparty. Defeasibility is modelled as a reified defeat relation between norms — undercutting exceptions, rebutting conflicts resolved by lex superior, specialis or posterior, and repeal — which flattens into a norm-to-norm prevalence digraph whose stratification, cycles and reinstatements are derived rather than stored. The deontic closure of each norm and the weak permissions holding in a described case are likewise part of the vocabulary but never annotated: they are materialised by a rule set into a derived graph, whose activity records the non-monotonic assumptions it relied on through the companion NORMA-O Derivation module.  <a class="less3">See less<a>'); 
+}
+else
+{      
+$('#collapse3').html('The NORMA ontology is a formal semantic model for representing machine-readable legal norm annotations as reusable knowledge graph resources. ...  <a  class="more3">See more</a>'); 
+}
+}); 
+</script>
+</td>
+</tr><tr id="tr4">
+<td><a href = "/home/ahmad/repos/prevclone-WncY/release/2.0.0/deriv/tests/test-unsound-role.ttl" target="_blank">Undefined</a> </td><td>
+<a href="ontologies/test-unsound-role.ttl"><span class="label label-primary">TURTLE</span></a>
+</td>
+<td><span class="label label-default">Undefined</span></td>
+<td></td>
+<td>
+</td>
+</tr><tr id="tr5">
+<td><a href = "/home/ahmad/repos/prevclone-WncY/release/2.0.0/deriv/tests/test-silent-counterparty.ttl" target="_blank">Undefined</a> </td><td>
+<a href="ontologies/test-silent-counterparty.ttl"><span class="label label-primary">TURTLE</span></a>
+</td>
+<td><span class="label label-default">Undefined</span></td>
+<td></td>
+<td>
+</td>
+</tr><tr id="tr6">
+<td><a href = "/home/ahmad/repos/prevclone-WncY/release/2.0.0/deriv/tests/test-abox.ttl" target="_blank">Undefined</a> </td><td>
+<a href="ontologies/test-abox.ttl"><span class="label label-primary">TURTLE</span></a>
+</td>
+<td><span class="label label-default">Undefined</span></td>
+<td><a href="http://lexvo.org/id/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
+<td>
+</td>
+</tr><tr id="tr7">
+<td><a href = "/home/ahmad/repos/prevclone-WncY/release/2.0.0/deriv/tests/test-roles-art25.ttl" target="_blank">Undefined</a> </td><td>
+<a href="ontologies/test-roles-art25.ttl"><span class="label label-primary">TURTLE</span></a>
+</td>
+<td><span class="label label-default">Undefined</span></td>
+<td><a href="http://lexvo.org/id/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
+<td>
+</td>
+</tr><tr id="tr8">
+<td><a href = "/home/ahmad/repos/prevclone-WncY/release/2.0.0/deriv/tests/test-cycles.ttl" target="_blank">Undefined</a> </td><td>
+<a href="ontologies/test-cycles.ttl"><span class="label label-primary">TURTLE</span></a>
+</td>
+<td><span class="label label-default">Undefined</span></td>
+<td><a href="http://lexvo.org/id/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
+<td>
+</td>
+</tr><tr id="tr9">
+<td><a href = "/home/ahmad/repos/prevclone-WncY/release/2.0.0/deriv/tests/test-counts-as.ttl" target="_blank">Undefined</a> </td><td>
+<a href="ontologies/test-counts-as.ttl"><span class="label label-primary">TURTLE</span></a>
+</td>
+<td><span class="label label-default">Undefined</span></td>
+<td><a href="http://lexvo.org/id/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
+<td>
+</td>
+</tr><tr id="tr10">
+<td><a href = "https://w3id.org/def/norma-o/deriv#" target="_blank">NORMA-O Derivation: provenance and assumptions of derived normative conclusions</a> </td><td>
+<a href="ontologies/norma-o-deriv.rdf"><span class="label label-primary">RDF/XML</span></a>
+</td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"> <span class="label label-success">https://creativecommons.org/l...</span> </a></td>
+<td><a href="http://lexvo.org/id/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
+<td>
+<p id="collapse10" data-toggle="collapse" >
+A companion module to the NORMA ontology for describing derived normative graphs: the activity that materialised them, the rule set and its version, ... <a class="more10">See more</a>
+</p>
+<script>
+$('#collapse10').click(function () {
+if($('a').hasClass('more10'))
+{
+$('#collapse10').html('A companion module to the NORMA ontology for describing derived normative graphs: the activity that materialised them, the rule set and its version, and — crucially — the non-monotonic assumptions under which the conclusions hold. NORMA-O states what norms mean and how they defeat one another; this module states under what reading a particular set of conclusions was computed, so that a published derived graph is reproducible and cannot be mistaken for annotated fact.  <a class="less10">See less<a>'); 
+}
+else
+{      
+$('#collapse10').html('A companion module to the NORMA ontology for describing derived normative graphs: the activity that materialised them, the rule set and its version, ...  <a  class="more10">See more</a>'); 
+}
+}); 
+</script>
+</td>
+</tr><tr id="tr11">
+<td><a href = "https://w3id.org/def/norma-o/deriv#" target="_blank">NORMA-O Derivation: provenance and assumptions of derived normative conclusions</a> </td><td>
+<a href="ontologies/norma-o-deriv.ttl"><span class="label label-primary">TURTLE</span></a>
+</td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"> <span class="label label-success">https://creativecommons.org/l...</span> </a></td>
+<td><a href="http://lexvo.org/id/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
+<td>
+<p id="collapse11" data-toggle="collapse" >
+A companion module to the NORMA ontology for describing derived normative graphs: the activity that materialised them, the rule set and its version, ... <a class="more11">See more</a>
+</p>
+<script>
+$('#collapse11').click(function () {
+if($('a').hasClass('more11'))
+{
+$('#collapse11').html('A companion module to the NORMA ontology for describing derived normative graphs: the activity that materialised them, the rule set and its version, and — crucially — the non-monotonic assumptions under which the conclusions hold. NORMA-O states what norms mean and how they defeat one another; this module states under what reading a particular set of conclusions was computed, so that a published derived graph is reproducible and cannot be mistaken for annotated fact.  <a class="less11">See less<a>'); 
+}
+else
+{      
+$('#collapse11').html('A companion module to the NORMA ontology for describing derived normative graphs: the activity that materialised them, the rule set and its version, ...  <a  class="more11">See more</a>'); 
+}
+}); 
+</script>
+</td>
+</tr><tr id="tr12">
+<td><a href = "https://w3id.org/def/norma-o#" target="_blank">NORMA-O: The NORMA Ontology for Legal Norm Annotations</a> </td><td>
+<a href="ontologies/norma-ontology-v2.rdf"><span class="label label-primary">RDF/XML</span></a>
+</td>
+<td><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"> <span class="label label-success">https://creativecommons.org/l...</span> </a></td>
+<td><a href="http://lexvo.org/id/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
+<td>
+<p id="collapse12" data-toggle="collapse" >
+The NORMA ontology is a formal semantic model for representing machine-readable legal norm annotations as reusable knowledge graph resources. ... <a class="more12">See more</a>
+</p>
+<script>
+$('#collapse12').click(function () {
+if($('a').hasClass('more12'))
+{
+$('#collapse12').html('The NORMA ontology is a formal semantic model for representing machine-readable legal norm annotations as reusable knowledge graph resources. It distinguishes between regulative norms and constitutive rules; represents legal conditions, their evaluated outcomes, and branch-sensitive activation through a TriggerEvent n-ary relation pattern; and captures the legal agents, actions, objects, sources, provenance metadata, lifecycle status, review status, extraction method, and controlled classification values needed for traceable and interoperable publication. The ontology aligns with PROV-O for provenance, ELI for legal resource modelling, FOAF for agent-oriented metadata, and SKOS for controlled vocabularies, and provides informative alignments with LKIF-Core via SKOS mapping properties. Regulative norms are formally grounded in Standard Deontic Logic, whose interdefinability of operators (F(X) ≡ O(¬X), P(X) ≡ ¬O(¬X), and facultativeness as P(X) ∧ P(¬X)) is captured through action negation and inter-norm deontic equivalence and contradiction relations, and in Hohfeld's scheme of first-order jural correlatives (duty and claim, privilege and no-right), represented as reified, directed legal positions between a holder and a counterparty. Defeasibility is modelled as a reified defeat relation between norms — undercutting exceptions, rebutting conflicts resolved by lex superior, specialis or posterior, and repeal — which flattens into a norm-to-norm prevalence digraph whose stratification, cycles and reinstatements are derived rather than stored. The deontic closure of each norm and the weak permissions holding in a described case are likewise part of the vocabulary but never annotated: they are materialised by a rule set into a derived graph, whose activity records the non-monotonic assumptions it relied on through the companion NORMA-O Derivation module.  <a class="less12">See less<a>'); 
+}
+else
+{      
+$('#collapse12').html('The NORMA ontology is a formal semantic model for representing machine-readable legal norm annotations as reusable knowledge graph resources. ...  <a  class="more12">See more</a>'); 
+}
+}); 
+</script>
+</td>
+</tr></tbody></table>
+<hr>
+      <footer class="footer">
+           <footer class="footer">
+            <div class="row">
+    	<div class="col-md-10">
+    		Page created with  <a href = "https://github.com/dgarijo/vocabLite" target="_blank">VocabLite</a> (<a href="http://oeg-upm.net/">Ontology Engineering Group</a>)
+	        <br>
+    	Built with <a target="_blank" href="http://getbootstrap.com/">Bootstrap</a>
+ 	        <br>
+	        Latest revision November, 2026
+        </div>
+		<div class="col-md-2">
+			<a href="https://github.com/dgarijo/vocabLite"><img width="140px"src="vocab/logoLite.png"></img></a>
+		</div>
+      </footer>      </div>
+      </footer>
+    </div> <!-- /container -->
