@@ -105,7 +105,7 @@ NORMA-O was developed following the **LOT (Linked Open Terms) methodology** for 
 | Publication | Persistent IRI (`w3id.org/def/norma-o`), WIDOCO HTML documentation via OnToology, Zenodo release with DOI |
 | Evaluation | SPARQL-based CQ evaluation against an EU AI Act ABox; in 2.0 also HermiT consistency and satisfiability checks, OOPS! pitfall scan and 140 automated derivation checks |
 
-> **Reference:** Poveda-Villalón, M., Gómez-Pérez, A., & Suárez-Figueroa, M. C. (2022). LOT: An industrial oriented ontology engineering framework. *Engineering Applications of Artificial Intelligence*, 111, 104755. https://doi.org/10.1016/j.engappai.2022.104755
+> **Reference:** Poveda-Villalón, M., Fernández-Izquierdo, A., Fernández-López, M., & García-Castro, R. (2022). LOT: An industrial oriented ontology engineering framework. *Engineering Applications of Artificial Intelligence*, 111, 104755. https://doi.org/10.1016/j.engappai.2022.104755
 
 ---
 

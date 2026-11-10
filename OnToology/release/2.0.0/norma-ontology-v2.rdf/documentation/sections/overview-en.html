@@ -1,6 +1,72 @@
 <h2 id="overv" class="list">NORMA ontology: Overview <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
-<span class="markdown">
-This ontology has the following classes and properties.</span>
+<p>The ontology is organised around complementary concerns. Version 1.0 introduced (1) normative content and its deontic type; (2) the legal context that makes a norm meaningful: conditions, agents, actions, objects and sources; (3) annotation provenance and lifecycle governance; and (4) controlled concept schemes. Version 2.0 adds (5) Standard Deontic Logic and relations between norms; (6) Hohfeldian legal positions; (7) roles, parties and cases; (8) defeasibility and the prevalence graph; and (9) counts-as chaining. The diagram below gives a bird's-eye view of the principal classes and their relationships. Click the image to open the full-resolution version.</p>
+
+<figure class="ontology-diagram">
+  <a href="norma-o-v2.svg" target="_blank" title="Open full-resolution diagram">
+    <img src="norma-o-v2.svg"
+         alt="NORMA-O 2.0 diagram: principal classes and their relationships"
+         style="max-width:100%; cursor:zoom-in;" />
+  </a>
+  <figcaption>
+    <strong>Figure 1.</strong> Principal classes and relationships of NORMA-O 2.0, in Chowlk notation (click to enlarge).
+  </figcaption>
+</figure>
+
+<h3 id="overv-groups" class="list">Conceptual groups</h3>
+
+<div class="concept-group">
+  <h4>Normative content</h4>
+  <p><code>norma:NormativeContent</code> is the central class. It branches into <code>norma:RegulativeNorm</code>, prescriptive statements that govern conduct, and <code>norma:ConstitutiveRule</code>, statements that establish legal statuses, roles or institutional facts. Regulative norms are specialised as <code>norma:Obligation</code>, <code>norma:Prohibition</code>, <code>norma:Permission</code> (with <code>norma:Facultative</code>), <code>norma:Recommendation</code> and <code>norma:NegativeRecommendation</code>.</p>
+</div>
+
+<div class="concept-group">
+  <h4>Legal context</h4>
+  <p>Each norm can be linked to a <code>norma:LegalAgent</code> (specialised in 2.0 as <code>norma:LegalRole</code> and <code>norma:LegalParty</code>), a <code>norma:LegalAction</code>, a <code>norma:LegalObject</code>, and a <code>norma:LegalSource</code> or <code>norma:LegalSourceExpression</code> aligned with ELI. Literal shortcuts (<code>norma:agentText</code>, <code>norma:actionText</code>, <code>norma:objectText</code>, <code>norma:conditionTrigger</code>) support lightweight annotation.</p>
+</div>
+
+<div class="concept-group">
+  <h4>Conditional activation: the TriggerEvent pattern</h4>
+  <p>A <code>norma:LegalCondition</code> links to <code>norma:TriggerEvent</code> instances, each pairing a <code>norma:ConditionOutcome</code> with the normative content it activates. The shortcut <code>norma:triggersNorm</code> is derived through a property chain.</p>
+</div>
+
+<div class="concept-group">
+  <h4>Provenance and annotation governance</h4>
+  <p><code>norma:AnnotationActivity</code> (aligned with <code>prov:Activity</code>) records the act that produced an annotation and <code>norma:AnnotatorAgent</code> (aligned with <code>prov:Agent</code>) the responsible party, with <code>norma:confidenceScore</code>, <code>norma:annotationDate</code> and <code>norma:lastReviewDate</code>.</p>
+</div>
+
+<div class="concept-group">
+  <h4>Controlled vocabularies</h4>
+  <p>SKOS concept classes provide stable classification values: <code>norma:BindingForce</code>, <code>norma:ComplianceCriticality</code>, <code>norma:ExtractionMethod</code>, <code>norma:NormStatus</code>, <code>norma:ReviewStatus</code> and <code>norma:ConditionOutcome</code>, and in 2.0 <code>norma:NormativeRank</code>, <code>norma:NormStrength</code> and <code>norma:ResolutionPrinciple</code>. Each has its own concept scheme.</p>
+</div>
+
+<div class="concept-group">
+  <h4>Deontic logic and relations between norms (2.0)</h4>
+  <p><code>norma:isNegationOf</code> links an action to its negation, so that the interdefinability of SDL operators can be stated. The <code>entails…</code> properties record the deontic closure of each norm; <code>norma:isDeonticallyEquivalentTo</code>, <code>norma:deonticallyContradicts</code> and <code>norma:deonticallyConflictsWith</code> relate norms; <code>norma:WeakPermission</code> records what is permitted in a case because nothing forbids it.</p>
+</div>
+
+<div class="concept-group">
+  <h4>Hohfeldian legal positions (2.0)</h4>
+  <p>Norms confer <code>norma:LegalPosition</code>s: <code>norma:Duty</code>, <code>norma:Claim</code>, <code>norma:Privilege</code> and <code>norma:NoRight</code>, each with a holder, a counterparty and an action, related as correlatives and jural opposites.</p>
+</div>
+
+<div class="concept-group">
+  <h4>Roles, parties and cases (2.0)</h4>
+  <p>A <code>norma:FactPattern</code> describes a case through the trigger events that fire in it and the <code>norma:RoleAssignment</code>s that place a <code>norma:LegalParty</code> in a <code>norma:LegalRole</code>, under the constitutive rule that justifies it (<code>norma:confersRole</code>).</p>
+</div>
+
+<div class="concept-group">
+  <h4>Defeasibility (2.0)</h4>
+  <p><code>norma:Defeater</code> reifies the defeat of one norm by another: <code>norma:ExceptionDefeater</code>, <code>norma:ConflictDefeater</code> (with a <code>norma:ResolutionPrinciple</code>) and <code>norma:TemporalDefeater</code>, gated by trigger events. Sources have a <code>norma:NormativeRank</code>, norms a <code>norma:NormStrength</code>, and every defeat projects onto the prevalence graph <code>norma:prevailsOver</code>.</p>
+</div>
+
+<div class="concept-group">
+  <h4>Counts-as chaining (2.0)</h4>
+  <p><code>norma:establishesTrigger</code> lets a constitutive rule establish the institutional fact on which regulative norms depend, so that defeating the rule withdraws those norms.</p>
+</div>
+
+<h3 id="overv-terms" class="list">Full term index</h3>
+<p>The tables below list all ontology terms. In the detailed cross-reference, the abbreviations <code>c</code>, <code>op</code>, <code>dp</code> and <code>ni</code> denote class, object property, data property and named individual respectively. The terms of the derivation module are documented separately at <a href="https://w3id.org/def/norma-o/deriv" target="_blank">https://w3id.org/def/norma-o/deriv</a>.</p>
+
 <h4>Classes</h4>
 <ul xmlns:widoco="https://w3id.org/widoco/vocab#"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

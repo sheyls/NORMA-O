@@ -1,6 +1,42 @@
 <h2 id="overv" class="list">NORMA-O Derivation module: Overview <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
-<span class="markdown">
-This ontology has the following classes and properties.</span>
+<p>The module describes a derivation run, the orderings it computed, the evaluation of each norm and the cycles found, together with three controlled vocabularies. The diagram below shows its classes and properties and their links to NORMA-O. Click the image to open the full-resolution version.</p>
+
+<figure class="ontology-diagram">
+  <a href="norma-o-deriv-v1.svg" target="_blank" title="Open full-resolution diagram">
+    <img src="norma-o-deriv-v1.svg"
+         alt="NORMA-O Derivation module diagram: classes, properties and links to NORMA-O"
+         style="max-width:100%; cursor:zoom-in;" />
+  </a>
+  <figcaption>
+    <strong>Figure 1.</strong> Classes and properties of the NORMA-O Derivation module, in Chowlk notation (click to enlarge).
+  </figcaption>
+</figure>
+
+<h3 id="overv-groups" class="list">Conceptual groups</h3>
+
+<div class="concept-group">
+  <h4>Derivation activity</h4>
+  <p><code>normad:DerivationActivity</code> (a <code>prov:Activity</code>) is one run of a rule set. It records the rule set and version (<code>normad:ruleSetVersion</code>), the named graph it wrote (<code>normad:derivedGraph</code>), its inputs (<code>prov:used</code>) and at least one assumption (<code>normad:computedUnderAssumption</code>).</p>
+</div>
+
+<div class="concept-group">
+  <h4>Orderings and evaluations</h4>
+  <p><code>normad:PrevalenceOrdering</code> is the ladder obtained by ordering the norms along the prevalence graph, either static or for one case (<code>normad:forFactPattern</code>), with <code>normad:stratumCount</code> and <code>normad:isAcyclic</code>. Each <code>normad:NormEvaluation</code> belongs to one ordering (<code>normad:inOrdering</code>), concerns one norm (<code>normad:evaluatedNorm</code>) and carries its <code>normad:prevalenceLevel</code>, its <code>normad:hasApplicabilityStatus</code> and the parties it reaches (<code>normad:reachesParty</code>).</p>
+</div>
+
+<div class="concept-group">
+  <h4>Cycles</h4>
+  <p><code>normad:PrevalenceCycle</code> is a cycle found in an ordering (<code>normad:inCycle</code>), involving at least two norms (<code>normad:involvesNorm</code>), classified by <code>normad:hasCycleKind</code> and listing the principles that compete on it (<code>normad:citesCompetingPrinciple</code>).</p>
+</div>
+
+<div class="concept-group">
+  <h4>Controlled vocabularies</h4>
+  <p><code>normad:ApplicabilityStatus</code> (Invalid, NotActivated, Applicable, Defeated, Undecided), <code>normad:Assumption</code> (eight readings) and <code>normad:CycleKind</code> (SecondDegreeConflict, AnnotationContradiction, IrresolubleAntinomy), each a SKOS concept class with its concept scheme.</p>
+</div>
+
+<h3 id="overv-terms" class="list">Full term index</h3>
+<p>The tables below list all module terms. In the detailed cross-reference, the abbreviations <code>c</code>, <code>op</code>, <code>dp</code> and <code>ni</code> denote class, object property, data property and named individual respectively.</p>
+
 <h4>Classes</h4>
 <ul xmlns:widoco="https://w3id.org/widoco/vocab#"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

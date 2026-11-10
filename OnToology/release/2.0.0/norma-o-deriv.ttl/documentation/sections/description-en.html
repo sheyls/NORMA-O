@@ -1,3 +1,82 @@
 <h2 id="desc" class="list">NORMA-O Derivation module: Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<p>The module describes derived normative graphs: the derivation activity, the rule set and version applied, the assumptions the conclusions depend on, and the prevalence orderings, norm evaluations and cycles they contain.</p>
 
-<span class="markdown">Companion module to NORMA-O 2.0 that describes derived normative graphs: the derivation activity, the rule set and version applied, the assumptions the conclusions depend on, and the prevalence orderings, norm evaluations and cycles they contain.</span>
+<h3 id="desc-scope" class="list">Scope</h3>
+<ul>
+  <li>the activity that produced a derived graph, its inputs, rule set and output graph;</li>
+  <li>the non-monotonic assumptions under which its conclusions hold;</li>
+  <li>prevalence orderings, static or per case, and the level of each norm in them;</li>
+  <li>the applicability of each norm in a described case, and the parties it reaches;</li>
+  <li>cycles in the prevalence graph and their legal reading.</li>
+</ul>
+<p>The conclusions themselves, such as the deontic closure, legal positions or relations between norms, are stated with NORMA-O terms (<code>norma:entailsObligatory</code>, <code>norma:Duty</code>, <code>norma:deonticallyContradicts</code>, <code>norma:WeakPermission</code>…). This module adds only what is specific to a derivation.</p>
+
+<h3 id="desc-separation" class="list">Asserted and derived graphs</h3>
+<p>A derived graph is <strong>regenerated, never maintained</strong>. It should be written to a named graph of its own (<code>normad:derivedGraph</code>) and never merged back into the annotation graph: otherwise a conclusion that stops following from the annotations, for instance after an exception is added, would remain as if it were annotated fact. <code>normad:DerivationActivity</code> is distinct from <code>norma:AnnotationActivity</code>, which produces annotations from legal sources; a derivation consumes annotations and produces their consequences. Two runs that report the same <code>normad:ruleSetVersion</code> over the same inputs are expected to produce the same graph.</p>
+
+<h3 id="desc-status" class="list">Applicability statuses</h3>
+<p>Evaluating a case assigns each norm one status, in order of precedence:</p>
+<table>
+  <tr><th>Status</th><th>Meaning</th></tr>
+  <tr><td><code>normad:Invalid</code></td><td>Not a member of the normative system: superseded, not yet in force, or repealed. It concerns validity, so it does not depend on the case.</td></tr>
+  <tr><td><code>normad:NotActivated</code></td><td>Valid, but none of the trigger events that activate it fires in the case.</td></tr>
+  <tr><td><code>normad:Applicable</code></td><td>Valid and activated, and every defeater reaching it is itself defeated, or none reaches it.</td></tr>
+  <tr><td><code>normad:Defeated</code></td><td>Valid and activated, but an applicable norm defeats it.</td></tr>
+  <tr><td><code>normad:Undecided</code></td><td>The asserted defeaters do not fix a label: the grounded fixpoint leaves the norm open.</td></tr>
+</table>
+<p>The last three come from Dung's grounded labelling, a monotone fixpoint over the valid and activated norms. A norm is <em>Undecided</em> only when that fixpoint leaves it open: lying on a cycle is not enough, since a cycle attacked from outside is still decided. Repeal is applied flatly, before the ordering, so a repealed norm is not revived when its repealing norm is itself repealed (as in art. 2.2 of the Spanish Civil Code), whereas a norm set aside by an exception is reinstated when the exception falls. The scheme is about applicability, not being in force: whether a norm is in force is a matter of temporal validity; whether it reaches a case is what evaluation decides.</p>
+
+<h3 id="desc-orderings" class="list">Prevalence orderings and cycles</h3>
+<p>A <code>normad:PrevalenceOrdering</code> without <code>normad:forFactPattern</code> is the <strong>static</strong> ladder over the whole normative system: its evaluations carry a level but no status. An ordering for one case keeps only the defeaters whose gating trigger events fire in it. The <code>normad:prevalenceLevel</code> of a norm is 0 if nothing prevails over it, and otherwise one more than the highest level among the norms that prevail over it. It is computed by longest-path layering on the condensation of the graph into strongly connected components, so every norm gets a level and the norms of one cycle share theirs.</p>
+<p>Full acyclicity cannot be expressed in OWL 2 DL, so cycles are found by computation and <strong>reported, not resolved</strong>. Each <code>normad:PrevalenceCycle</code> is classified by the defeat that forms it:</p>
+<table>
+  <tr><th>Cycle kind</th><th>When</th></tr>
+  <tr><td><code>normad:SecondDegreeConflict</code></td><td>Conflict defeaters on the cycle cite <em>different</em> resolution principles, so the criteria themselves are unordered for that pair (Bobbio).</td></tr>
+  <tr><td><code>normad:AnnotationContradiction</code></td><td>Conflict defeaters cite the <em>same</em> principle in opposite directions, which one principle cannot sustain.</td></tr>
+  <tr><td><code>normad:IrresolubleAntinomy</code></td><td>The defeat cites no principle at all, typically a loop of exceptions.</td></tr>
+</table>
+
+<h3 id="desc-assumptions" class="list">Assumptions</h3>
+<p>A derived conclusion is only meaningful together with the readings it rests on. Every <code>normad:DerivationActivity</code> declares at least one with <code>normad:computedUnderAssumption</code>:</p>
+<table>
+  <tr><th>Assumption</th><th>Reading</th></tr>
+  <tr><td><code>normad:ClosedGraph</code></td><td>A norm absent from the graph is absent from the normative system.</td></tr>
+  <tr><td><code>normad:ClosedCaseDescription</code></td><td>A condition the case is silent about does not hold.</td></tr>
+  <tr><td><code>normad:DefeatConsidered</code></td><td>Defeat relations were taken into account.</td></tr>
+  <tr><td><code>normad:DefeatNotConsidered</code></td><td>Defeat relations were ignored; mutually exclusive with the previous one.</td></tr>
+  <tr><td><code>normad:GroundedSemantics</code></td><td>Defeat was evaluated under Dung's grounded semantics.</td></tr>
+  <tr><td><code>normad:ReinstatementNotComputed</code></td><td>Defeat was applied one level deep, without reinstatement.</td></tr>
+  <tr><td><code>normad:InstitutionalFactsChained</code></td><td>Facts established by applicable constitutive rules were fed back into the case.</td></tr>
+  <tr><td><code>normad:OpenCounterparty</code></td><td>A counterparty no annotator named is read as not disagreeing when norms or positions are compared.</td></tr>
+</table>
+<p>The reference rule set always declares ClosedGraph, ClosedCaseDescription, DefeatConsidered and GroundedSemantics; it adds InstitutionalFactsChained when the graph uses <code>norma:establishesTrigger</code>, and OpenCounterparty when some norm with an action names no counterparty. DefeatNotConsidered and ReinstatementNotComputed are available to other producers.</p>
+
+<h3 id="desc-example" class="list">Example</h3>
+<div class="description">
+<p><strong>Evaluation of Article 16 of the AI Act in a case where Acme substantially modified a high-risk system</strong></p>
+<pre><code>:derivation_01 a normad:DerivationActivity ;
+    normad:ruleSetVersion "norma-derivation/1.0" ;
+    normad:computedUnderAssumption normad:ClosedGraph, normad:ClosedCaseDescription,
+        normad:DefeatConsidered, normad:GroundedSemantics, normad:OpenCounterparty .
+
+:ordering_Case_acme_modified a normad:PrevalenceOrdering ;
+    normad:forFactPattern art25:Case_acme_modified ;
+    prov:wasGeneratedBy :derivation_01 .
+
+:ordering_Case_acme_modified_eval_OBL_Art16_provider a normad:NormEvaluation ;
+    normad:evaluatedNorm art25:OBL_Art16_provider ;
+    normad:inOrdering :ordering_Case_acme_modified ;
+    normad:prevalenceLevel 0 ;
+    normad:hasApplicabilityStatus normad:Applicable ;
+    normad:reachesParty art25:Party_Acme .</code></pre>
+<p>Article 16 is addressed to the role <em>provider</em>; the case assigns Acme to that role under Article 25(1)(b), so the obligation applies and reaches Acme. The activity declares <code>OpenCounterparty</code> because the obligation names no counterparty. This is the output of the reference rule set on its test fixture <code>test-roles-art25.ttl</code>.</p>
+</div>
+
+<h3 id="desc-ruleset" class="list">Reference rule set</h3>
+<p>NORMA-O provides a <a href="https://github.com/sheyls/NORMA-O/tree/main/release/2.0.0/deriv" target="_blank">reference implementation</a> (rule set version <code>norma-derivation/1.0</code>) that writes its output with this module. It consists of 19 SPARQL <code>CONSTRUCT</code> rules for action negation, the deontic closure, defeat edges, weak-permission candidates, Hohfeldian positions and relations between norms, and a Python implementation of the prevalence ordering: layered topological order (Kahn), strongly connected components for cycle detection, the levels on the condensation, and Dung's grounded labelling. Per case, evaluation alternates with counts-as chaining until no new institutional fact appears. It is checked by 140 automated tests, including consistency under HermiT.</p>
+<pre><code>pip install -r release/2.0.0/deriv/requirements.txt
+python release/2.0.0/deriv/derive.py my-norms.ttl my-cases.ttl -o derived.ttl</code></pre>
+<p>Besides the derived graph, the rule set warns about what it cannot resolve or what looks wrong in the annotation: prevalence cycles, defeats against Strict norms, norms outside the system, role assignments whose justifying rule does not apply, and norms without a counterparty or a <code>norma:LegalAction</code>.</p>
+
+<h3 id="desc-use" class="list">Intended use</h3>
+<p>The module is intended for anyone who publishes or consumes conclusions computed from NORMA-O graphs: compliance tools that answer which norms apply in a case, research comparing derivation semantics, and audits that need to know how a result was obtained. Producers using other semantics should declare the assumptions that match their reading, and may add new <code>normad:Assumption</code> values to the scheme.</p>

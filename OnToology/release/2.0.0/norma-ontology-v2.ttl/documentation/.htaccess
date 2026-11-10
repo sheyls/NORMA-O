@@ -13,6 +13,53 @@ RewriteEngine On
 #Change the path to the folder here
 RewriteBase /documentation 
 
+# Previous version IRI: https://w3id.org/def/norma-o/1.0
+RewriteCond %{HTTP_ACCEPT} application/ld\+json
+RewriteRule ^1\.0/?$ https://sheyls.github.io/NORMA-O/OnToology/release/1.0.0/norma-ontology-v1.rdf/documentation/ontology.jsonld [R=303,L]
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^1\.0/?$ https://sheyls.github.io/NORMA-O/OnToology/release/1.0.0/norma-ontology-v1.rdf/documentation/index-en.html [R=303,L]
+RewriteCond %{HTTP_ACCEPT} application/n-triples
+RewriteRule ^1\.0/?$ https://sheyls.github.io/NORMA-O/OnToology/release/1.0.0/norma-ontology-v1.rdf/documentation/ontology.nt [R=303,L]
+RewriteCond %{HTTP_ACCEPT} text/turtle [OR]
+RewriteCond %{HTTP_ACCEPT} text/\* [OR]
+RewriteCond %{HTTP_ACCEPT} \*/turtle
+RewriteRule ^1\.0/?$ https://sheyls.github.io/NORMA-O/OnToology/release/1.0.0/norma-ontology-v1.rdf/documentation/ontology.ttl [R=303,L]
+RewriteRule ^1\.0/?$ https://sheyls.github.io/NORMA-O/OnToology/release/1.0.0/norma-ontology-v1.rdf/documentation/ontology.owl [R=303,L]
+
+# Version IRI: https://w3id.org/def/norma-o/2.0
+RewriteCond %{HTTP_ACCEPT} application/ld\+json
+RewriteRule ^2\.0/?$ https://sheyls.github.io/NORMA-O/OnToology/release/2.0.0/norma-ontology-v2.rdf/documentation/ontology.jsonld [R=303,L]
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^2\.0/?$ https://sheyls.github.io/NORMA-O/OnToology/release/2.0.0/norma-ontology-v2.rdf/documentation/index-en.html [R=303,L]
+RewriteCond %{HTTP_ACCEPT} application/n-triples
+RewriteRule ^2\.0/?$ https://sheyls.github.io/NORMA-O/OnToology/release/2.0.0/norma-ontology-v2.rdf/documentation/ontology.nt [R=303,L]
+RewriteCond %{HTTP_ACCEPT} text/turtle [OR]
+RewriteCond %{HTTP_ACCEPT} text/\* [OR]
+RewriteCond %{HTTP_ACCEPT} \*/turtle
+RewriteRule ^2\.0/?$ https://sheyls.github.io/NORMA-O/OnToology/release/2.0.0/norma-ontology-v2.rdf/documentation/ontology.ttl [R=303,L]
+RewriteRule ^2\.0/?$ https://sheyls.github.io/NORMA-O/OnToology/release/2.0.0/norma-ontology-v2.rdf/documentation/ontology.owl [R=303,L]
+
+# Derivation module IRIs: https://w3id.org/def/norma-o/deriv and /deriv/1.0
+RewriteCond %{HTTP_ACCEPT} application/ld\+json
+RewriteRule ^deriv(/1\.0)?/?$ https://sheyls.github.io/NORMA-O/OnToology/release/2.0.0/norma-o-deriv.rdf/documentation/ontology.jsonld [R=303,L]
+RewriteCond %{HTTP_ACCEPT} application/n-triples
+RewriteRule ^deriv(/1\.0)?/?$ https://sheyls.github.io/NORMA-O/OnToology/release/2.0.0/norma-o-deriv.rdf/documentation/ontology.nt [R=303,L]
+RewriteCond %{HTTP_ACCEPT} text/turtle
+RewriteRule ^deriv(/1\.0)?/?$ https://sheyls.github.io/NORMA-O/OnToology/release/2.0.0/norma-o-deriv.rdf/documentation/ontology.ttl [R=303,L]
+RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
+RewriteCond %{HTTP_ACCEPT} text/html [OR]
+RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
+RewriteRule ^deriv(/1\.0)?/?$ https://sheyls.github.io/NORMA-O/OnToology/release/2.0.0/norma-o-deriv.rdf/documentation/index-en.html [R=303,L]
+RewriteRule ^deriv(/1\.0)?/?$ https://sheyls.github.io/NORMA-O/OnToology/release/2.0.0/norma-o-deriv.rdf/documentation/ontology.owl [R=303,L]
+
+
 # Rewrite rule to serve JSON-LD content from the vocabulary URI if requested
 # Placed before HTML to support serving JSON-LD from a browser (e.g., JSON Playground)
 RewriteCond %{HTTP_ACCEPT} application/ld\+json

@@ -1,3 +1,262 @@
 <h2 id="desc" class="list">NORMA ontology: Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
 
-<span class="markdown">Formal ontology for representing machine-readable legal norm annotations, their legal context, conditional applicability, provenance, source traceability, lifecycle status, and controlled classification values in the NORMA toolkit.</span>
+<p>NORMA-O is a domain ontology for representing legal norms and their annotations as structured semantic resources. It supports the publication, integration and reuse of normative content derived from regulatory texts, preserves traceability to the legal source and accountability for the annotation process, and, since version 2.0, provides the vocabulary to state how norms relate to one another and to concrete cases.</p>
+
+<h3 id="desc-scope" class="list">Scope</h3>
+<p>The ontology covers:</p>
+<ul>
+  <li>regulative norms: obligations, prohibitions, permissions (including facultative ones), recommendations and negative recommendations;</li>
+  <li>constitutive rules that define statuses, classifications, roles or institutional facts;</li>
+  <li>legal conditions, their evaluated outcomes, and the trigger events that link an outcome to the norms it activates;</li>
+  <li>legal agents, distinguishing the roles a law names from the concrete parties of a case, together with legal actions, objects and sources;</li>
+  <li>provenance, extraction method, review status, lifecycle status and source traceability of each annotation;</li>
+  <li>deontic relations between norms: equivalence, contradiction and conflict;</li>
+  <li>Hohfeldian legal positions conferred by norms;</li>
+  <li>described cases and the role assignments that hold in them;</li>
+  <li>defeat between norms by exception, conflict or repeal, the principles that resolve conflicts, the rank of sources and the strength of norms;</li>
+  <li>through the <code>normad</code> module, the provenance and assumptions of derived conclusions.</li>
+</ul>
+<p>The ontology does not encode substantive regulatory knowledge, which belongs in the instance data, nor does it model procedure beyond what is needed to contextualise normative content.</p>
+
+<h3 id="desc-objectives" class="list">Design objectives</h3>
+<ul>
+  <li>distinguish clearly between prescriptive content (what is required, permitted or forbidden) and definitional content (what counts as what);</li>
+  <li>support traceability from each annotation back to the legal source from which it was derived;</li>
+  <li>preserve who created an annotation, how it was produced, and with what confidence or review state;</li>
+  <li>represent conditional applicability so that it can be queried, validated and reasoned over;</li>
+  <li>ground the representation in established legal theory, so that comparisons between norms, legal positions and defeat follow accepted accounts rather than ad hoc conventions;</li>
+  <li>keep derived conclusions apart from asserted ones, and make each of them explainable through the rules and assumptions that produced it;</li>
+  <li>reuse established standards where possible, rather than introducing isolated project-specific patterns.</li>
+</ul>
+
+<h3 id="desc-organization" class="list">Conceptual organisation</h3>
+<p>The model is organised in layers, shown in Figure 1 of the overview. The first four come from version 1.0; the sections that follow describe the layers added in 2.0.</p>
+
+<div class="concept-group">
+  <h4>Normative content</h4>
+  <p><code>norma:NormativeContent</code> is the central class: machine-readable legal content extracted, formulated or curated from a legal source. It branches into <code>norma:RegulativeNorm</code>, for statements that govern conduct, and <code>norma:ConstitutiveRule</code>, for statements that define or qualify legal and institutional situations. Regulative norms are specialised as <code>norma:Obligation</code>, <code>norma:Prohibition</code>, <code>norma:Permission</code> (with the subclass <code>norma:Facultative</code>), <code>norma:Recommendation</code> and <code>norma:NegativeRecommendation</code>. A regulative norm can be linked to a legal agent, an action, an object, a binding force and a compliance criticality; constitutive rules are kept separate so that definitional content is not conflated with prescriptive content.</p>
+</div>
+
+<div class="concept-group">
+  <h4>Legal context</h4>
+  <p>Each norm is linked to the legal elements that give it meaning: a <code>norma:LegalAgent</code> (the addressee), a <code>norma:LegalAction</code> (the required, forbidden or permitted act), a <code>norma:LegalObject</code> (what the action concerns), and a <code>norma:LegalSource</code> or <code>norma:LegalSourceExpression</code> (the work and the version of the legal instrument, aligned with ELI). The literal shortcuts <code>norma:agentText</code>, <code>norma:actionText</code>, <code>norma:objectText</code> and <code>norma:conditionTrigger</code> support lightweight annotation, but they are not read by the derivation: as soon as norms must be compared, use the object-level properties.</p>
+</div>
+
+<div class="concept-group">
+  <h4>Conditional activation: the trigger-event pattern</h4>
+  <p>A <code>norma:LegalCondition</code> links, through <code>norma:hasTrigger</code>, to one or more <code>norma:TriggerEvent</code> instances. Each pairs one <code>norma:ConditionOutcome</code> (<code>norma:TrueOutcome</code> or <code>norma:FalseOutcome</code>) with the normative content it activates (<code>norma:activatesNorm</code>). This n-ary pattern makes branch-sensitive activation explicit: one condition may activate different norms depending on which branch holds. The shortcut <code>norma:triggersNorm</code>, defined by the property chain <code>hasTrigger ∘ activatesNorm</code>, serves systems that only need to know that a triggering relation exists. In 2.0, trigger events are also what a case holds, what gates a defeater and what a constitutive rule establishes.</p>
+</div>
+
+<div class="concept-group">
+  <h4>Provenance and controlled vocabularies</h4>
+  <p><code>norma:AnnotationActivity</code> (aligned with <code>prov:Activity</code>) records the act that produced an annotation, with its date and confidence; <code>norma:AnnotatorAgent</code> (aligned with <code>prov:Agent</code>) identifies who is responsible. Annotation management relies on SKOS concept classes with named individuals, each in its own concept scheme:</p>
+  <ul>
+    <li><code>norma:BindingForce</code>: HardLaw, SoftLaw, Contractual, InternalPolicy;</li>
+    <li><code>norma:ComplianceCriticality</code>: Critical, High, Medium, Low;</li>
+    <li><code>norma:ExtractionMethod</code>: ManualLawyer, ManualAnalyst, LLMExtraction, PatternMatching, RuleBased;</li>
+    <li><code>norma:NormStatus</code>: Active, Disputed, Superseded, NotYetInForce;</li>
+    <li><code>norma:ReviewStatus</code>: NotReviewed, PendingReview, UnderReview, Approved;</li>
+    <li><code>norma:ConditionOutcome</code>: TrueOutcome, FalseOutcome;</li>
+    <li>new in 2.0: <code>norma:NormativeRank</code>, <code>norma:NormStrength</code> and <code>norma:ResolutionPrinciple</code> (described below).</li>
+  </ul>
+</div>
+
+<h3 id="desc-sdl" class="list">Standard Deontic Logic: actions, negation and closure</h3>
+<p>The deontic types are grounded in Standard Deontic Logic (SDL), where the operators are interdefinable: F(X) ≡ O(¬X) and P(X) ≡ ¬O(¬X). To make this expressible, <code>norma:isNegationOf</code> links an action X to the action ¬X of not doing X; it is functional, symmetric and irreflexive. <code>norma:Facultative</code> is P(X) ∧ P(¬X): the action is neither obligatory nor forbidden.</p>
+<p>The <strong>deontic closure</strong> of a norm is recorded by eight properties from <code>RegulativeNorm</code> to <code>LegalAction</code>:</p>
+<table>
+  <tr><th>Property</th><th>Reads</th></tr>
+  <tr><td><code>norma:entailsObligatory</code> / <code>norma:entailsNotObligatory</code></td><td>O(x) / ¬O(x)</td></tr>
+  <tr><td><code>norma:entailsPermitted</code> / <code>norma:entailsNotPermitted</code></td><td>P(x) / ¬P(x)</td></tr>
+  <tr><td><code>norma:entailsForbidden</code> / <code>norma:entailsNotForbidden</code></td><td>F(x) / ¬F(x)</td></tr>
+  <tr><td><code>norma:entailsRecommended</code> / <code>norma:entailsDiscouraged</code></td><td>Rec(x) / NegRec(x)</td></tr>
+</table>
+<p><code>entailsPermitted</code> and <code>entailsNotForbidden</code> are equivalent properties, as are <code>entailsNotPermitted</code> and <code>entailsForbidden</code>. <code>entailsObligatory</code> is disjoint with <code>entailsNotObligatory</code>, and <code>entailsPermitted</code> with <code>entailsNotPermitted</code>, so a norm whose closure contains both O(x) and ¬O(x) makes the graph inconsistent. These properties are <strong>derived, never annotated</strong>: for example, F(x) entails F(x), ¬P(x), ¬O(x), O(¬x), P(¬x) and ¬F(¬x). The closure is produced by the reference rule set, because OWL 2 DL cannot express it.</p>
+<p><code>norma:WeakPermission</code> captures weak permission in the sense of von Wright and of Alchourrón and Bulygin: an action is not forbidden for an agent in a case simply because no applicable norm forbids it. It differs from strong permission (an enacted <code>Permission</code>), has no source and no text, and is always relative to one action (<code>norma:aboutAction</code>), one agent (<code>norma:forAgent</code>) and one case (<code>norma:inFactPattern</code>).</p>
+
+<h3 id="desc-relations" class="list">Deontic relations between norms</h3>
+<table>
+  <tr><th>Property</th><th>Characteristics</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td><code>norma:isDeonticallyEquivalentTo</code></td><td>symmetric, transitive</td><td>same deontic content for the same agent, counterparty and circumstances, under different operators</td><td>F(¬x) and O(x)</td></tr>
+  <tr><td><code>norma:deonticallyContradicts</code></td><td>symmetric, irreflexive</td><td>exactly one of the two holds</td><td>P(x) and F(x)</td></tr>
+  <tr><td><code>norma:deonticallyConflictsWith</code></td><td>symmetric, irreflexive; superproperty of the previous one</td><td>both cannot hold, though both may fail</td><td>O(x) and F(x)</td></tr>
+</table>
+<p>Class restrictions keep each relation within compatible operator families: an <code>Obligation</code> or <code>Prohibition</code> contradicts only a <code>Permission</code>. These relations are <em>prima facie</em>: they hold between norms as enacted and do not depend on whether a norm is defeated in a case.</p>
+
+<h3 id="desc-hohfeld" class="list">Hohfeldian legal positions</h3>
+<p><code>norma:LegalPosition</code> is a directed, first-order jural relation held by one agent (the holder, A) against another (the counterparty, B) concerning an action. Its four pairwise disjoint subclasses form Hohfeld's square:</p>
+<table>
+  <tr><th></th><th>Holder A toward B</th><th>Correlative: B toward A</th></tr>
+  <tr><td>Bound</td><td><code>norma:Duty</code> over x</td><td><code>norma:Claim</code> over x</td></tr>
+  <tr><td>Free</td><td><code>norma:Privilege</code> over ¬x</td><td><code>norma:NoRight</code> over ¬x</td></tr>
+</table>
+<p>Duty and Privilege, and Claim and No-right, are jural opposites (<code>norma:isJuralOppositeOf</code>); positions in the same row are correlatives (<code>norma:isCorrelativeOf</code>). A norm confers positions through <code>norma:confersLegalPosition</code>: an obligation or prohibition confers a Duty and, if the norm names a counterparty with <code>norma:hasCounterparty</code>, its Claim; a permission confers a Privilege and its No-right; a facultative norm confers two privileges, over x and over ¬x; recommendations confer nothing, because they do not bind. Positions have a holder (<code>norma:hasPositionHolder</code>), a counterparty (<code>norma:hasPositionCounterparty</code>) and a content (<code>norma:concernsLegalAction</code>). A reasoner infers the counterparty and the content of a correlative from two property chains. Two positions are jural opposites only if they share both holder and counterparty: an agent may owe X to B while being free to omit X as against C.</p>
+
+<h3 id="desc-roles" class="list">Roles, parties and cases</h3>
+<p>Legislation addresses roles, while cases involve concrete parties. <code>norma:LegalRole</code> (provider, deployer, importer…) and <code>norma:LegalParty</code> (a natural or legal person, authority or body) are disjoint subclasses of <code>norma:LegalAgent</code>. A <code>norma:FactPattern</code> describes a case: the trigger events that fire in it (<code>norma:holdsTrigger</code>) and the role assignments that hold (<code>norma:holdsRoleAssignment</code>). A <code>norma:RoleAssignment</code> states that one party (<code>norma:hasAssignedParty</code>) occupies one role (<code>norma:hasAssignedRole</code>) in that case, and which rule justifies it (<code>norma:assignedUnderRule</code>). A constitutive rule can attribute a role with <code>norma:confersRole</code>, following Searle's "X counts as Y in context C"; for example, under Article 25(1) of the AI Act a deployer that substantially modifies a high-risk system counts as its provider. Role assignments are asserted, not derived, because a trigger event records what happened but not who did it.</p>
+
+<h3 id="desc-defeasibility" class="list">Defeasibility: exceptions, conflicts and repeal</h3>
+<p>A <code>norma:Defeater</code> reifies a defeat relation between norms, from at least one <code>norma:defeatingNorm</code> to at least one <code>norma:defeatedNorm</code>. Following Pollock, three kinds are distinguished:</p>
+<table>
+  <tr><th>Class</th><th>Kind of defeat</th><th>Effect</th></tr>
+  <tr><td><code>norma:ExceptionDefeater</code></td><td>undercutting, conditional</td><td>withdraws the norm's effect without asserting the opposite</td></tr>
+  <tr><td><code>norma:ConflictDefeater</code></td><td>rebutting, conditional</td><td>the defeating norm asserts an opposing status and prevails by a resolution principle</td></tr>
+  <tr><td><code>norma:TemporalDefeater</code></td><td>repeal (lex posterior), total</td><td>the defeated norm leaves the normative system</td></tr>
+</table>
+<p>A defeater is gated by the trigger events in <code>norma:appliesWhen</code>, read conjunctively. A conflict defeater cites one or more resolution principles with <code>norma:hasResolutionPrinciple</code>: <code>norma:LexSuperior</code>, <code>norma:LexSpecialis</code> or <code>norma:LexPosterior</code>, after Bobbio's criteria for antinomies. The shortcuts <code>norma:isExceptionTo</code> and <code>norma:supersedes</code> state unconditional defeat without reifying it. Because an exception is now a norm with its own node, it can itself be excepted, which the deprecated literal <code>norma:exception</code> could not express.</p>
+<p>The <strong>hierarchy of sources</strong>, after Merkl and Kelsen, is given by <code>norma:NormativeRank</code>, assigned to a source with <code>norma:hasRank</code> and copied onto a norm with <code>norma:fromRank</code>. Each rank has a comparable <code>norma:rankLevel</code>: ConstitutionalRank 40, LegislativeRank 30, RegulatoryRank 20, DelegatedRank 10, OrganisationalRank 0. <code>norma:NormStrength</code> distinguishes <code>norma:Strict</code> norms, which admit no defeat, from <code>norma:Defeasible</code> ones, following Nute.</p>
+<p>All defeat relations project onto a norm-to-norm <strong>prevalence graph</strong>. <code>norma:prevailsOver</code> is defined by the chain <code>isDefeatingNormOf ∘ defeatedNorm</code> and has the subproperties <code>norma:exceptionPrevailsOver</code>, <code>norma:conflictPrevailsOver</code>, <code>norma:temporalPrevailsOver</code> and <code>norma:directlyPrevailsOver</code> (asymmetric and irreflexive). <code>prevailsOver</code> is deliberately not transitive: a defeated defeater reinstates the norm it defeated. The levels of the graph, its cycles and the status of each norm in a case are derived, not stored.</p>
+
+<h3 id="desc-countsas" class="list">Counts-as chaining</h3>
+<p>Constitutive rules often conclude institutional facts on which regulative norms depend. <code>norma:establishesTrigger</code> links a norm to a trigger event that holds whenever that norm applies, so that the norms conditioned on the rule's conclusion are activated by it. Article 6(2) of the AI Act, for instance, classifies Annex III systems as high-risk, and Articles 16 and 26 bind providers and deployers of high-risk systems. Article 6(3) excepts a system from the classification, not from each obligation: with the chaining, defeating the classification withdraws both obligations, and reinstating it reinstates both. <code>confersRole</code> covers the counts-as that attributes a role; <code>establishesTrigger</code> the counts-as that establishes a fact.</p>
+
+<h3 id="desc-inference" class="list">What can be inferred, and how</h3>
+<p>Two sources of inference work together.</p>
+<p><strong>A standard OWL 2 DL reasoner</strong> (such as HermiT or Pellet) infers the counterparty and content of correlative positions, the prevalence edges from reified defeaters and shortcuts, the interchangeability of P(x) and ¬F(x), and the inverses, symmetries and transitivity declared for the new relations. It also detects inconsistencies, such as an individual typed as two kinds of position or defeater, a norm whose closure contains both O(x) and ¬O(x), an obligation stated to contradict another obligation, a recommendation that confers a position, or two norms directly prevailing over each other.</p>
+<p><strong>A rule set</strong> computes what OWL 2 DL cannot express: the deontic closure, the minting of positions, the prevalence ordering and its cycles, the applicability of each norm per case, weak permissions and counts-as chaining. NORMA-O provides a reference rule set, but any producer may use its own; what the ontology fixes is the vocabulary in which the results and their assumptions are stated.</p>
+
+<h3 id="desc-deriv" class="list">The derivation module</h3>
+<p>The companion module <a href="https://w3id.org/def/norma-o/deriv" target="_blank">NORMA-O Derivation</a> (<code>https://w3id.org/def/norma-o/deriv</code>, prefix <code>normad</code>) imports NORMA-O and PROV-O and describes <strong>derived graphs</strong>: graphs regenerated from the annotations, never edited by hand and never merged back into them.</p>
+
+<figure class="ontology-diagram">
+  <a href="norma-o-deriv-v1.svg" target="_blank" title="Open full-resolution diagram">
+    <img src="norma-o-deriv-v1.svg" alt="NORMA-O Derivation module diagram" style="max-width:100%; cursor:zoom-in;" />
+  </a>
+  <figcaption><strong>Figure 2.</strong> Classes and properties of the derivation module <code>normad</code> (click to enlarge).</figcaption>
+</figure>
+
+<p>A <code>normad:DerivationActivity</code> is one run of a rule set, with its version, inputs and the assumptions it relied on. It produces a <code>normad:PrevalenceOrdering</code>, either static (over the whole body of norms) or for one case, containing a <code>normad:NormEvaluation</code> per norm with its prevalence level and, per case, its <code>normad:ApplicabilityStatus</code>: <code>Invalid</code> (outside the normative system), <code>NotActivated</code> (no trigger fires), <code>Applicable</code>, <code>Defeated</code> or <code>Undecided</code>, the last three from Dung's grounded semantics. Cycles in the prevalence graph are reported as <code>normad:PrevalenceCycle</code> with their <code>normad:CycleKind</code> rather than silently resolved. Each conclusion is stated together with the <code>normad:Assumption</code> values it rests on, such as a closed graph, a closed case description or grounded semantics. The module has its own documentation.</p>
+
+<p>The <a href="https://github.com/sheyls/NORMA-O/tree/main/release/2.0.0/deriv" target="_blank">reference rule set</a> consists of 19 SPARQL <code>CONSTRUCT</code> rules for closure, positions and relations between norms, and a Python implementation of the prevalence ordering (layered topological order, strongly connected components and grounded labelling). It is checked by 140 automated tests:</p>
+<pre><code>pip install -r release/2.0.0/deriv/requirements.txt
+python release/2.0.0/deriv/derive.py my-norms.ttl my-cases.ttl -o derived.ttl</code></pre>
+
+<h3 id="desc-conventions" class="list">Modelling conventions</h3>
+<ul>
+  <li>In a <code>Prohibition</code>, annotate the <strong>positive</strong> action X: the operator already carries the negation.</li>
+  <li>Scope carve-outs ("this Regulation does not apply to…") are <code>ConstitutiveRule</code>s, not permissions.</li>
+  <li>Every inference across norms joins on <code>LegalAction</code>: align actions across annotators, with <code>owl:sameAs</code> or an agreed vocabulary.</li>
+  <li>Name the counterparty with <code>hasCounterparty</code> where the source does; otherwise no correlative position is derived.</li>
+  <li>Type addressees as <code>LegalRole</code> and concrete entities as <code>LegalParty</code>; <code>LegalAgent</code> remains valid when the annotation commits to neither.</li>
+  <li>An institutional fact must be established by a rule, not asserted in the case: a fact asserted in a <code>FactPattern</code> is brute and cannot be defeated.</li>
+  <li>Some properties are functional because one value per annotation is expected, for example <code>norma:hasNormStatus</code>, <code>norma:hasReviewStatus</code> and <code>norma:hasExtractionMethod</code>.</li>
+</ul>
+
+<h3 id="desc-examples" class="list">Illustrative examples</h3>
+<p>The examples below use the prefix <code>norma:</code> for <code>https://w3id.org/def/norma-o#</code>. Examples 4 to 6 are taken from the test fixtures of the reference rule set.</p>
+
+<div class="description">
+<p><strong>Example 1: a regulative norm with its provenance (EU AI Act, Article 50(2))</strong></p>
+<pre><code>:OBL_Mark_AI_generated_content a norma:Obligation ;
+    norma:deonticId "OBL_Mark_AI_generated_content" ;
+    norma:normStatement "Providers of AI systems generating synthetic content shall ensure that the outputs are marked in a machine-readable format." ;
+    norma:hasLegalAgent  :Role_Provider ;
+    norma:hasLegalAction :Action_mark_outputs ;
+    norma:hasLegalObject :Object_synthetic_content ;
+    norma:hasLegalSource :Regulation_EU_AI_Act ;
+    norma:fromArticle "50" ; norma:fromParagraph "2" ;
+    norma:hasBindingForce norma:HardLaw ;
+    norma:hasComplianceCriticality norma:High ;
+    norma:hasNormStatus norma:Active ;
+    norma:hasReviewStatus norma:PendingReview ;
+    norma:hasExtractionMethod norma:ManualLawyer ;
+    norma:wasGeneratedByAnnotationActivity :Activity_001 .
+
+:Activity_001 a norma:AnnotationActivity ;
+    norma:annotationDate "2026-04-30"^^xsd:date ;
+    norma:confidenceScore 1.0 ;
+    norma:usedLegalSource :Regulation_EU_AI_Act .</code></pre>
+<p>The date and confidence belong to the annotation activity, not to the obligation: it is the act of annotating that has a date and a confidence.</p>
+</div>
+
+<div class="description">
+<p><strong>Example 2: conditional activation</strong></p>
+<pre><code>:Cond_misleading a norma:LegalCondition ;
+    norma:conditionStatement "The content may mislead recipients as to whether it was generated by AI." ;
+    norma:hasTrigger :TE_misleading_true .
+
+:TE_misleading_true a norma:TriggerEvent ;
+    norma:hasOutcome norma:TrueOutcome ;
+    norma:activatesNorm :OBL_Disclose_deep_fake .</code></pre>
+<p>The graph records which outcome of the condition activates which norm, not only that a condition exists.</p>
+</div>
+
+<div class="description">
+<p><strong>Example 3: an exception modelled as a norm</strong></p>
+<pre><code>:FCT_research a norma:ConstitutiveRule ;
+    norma:factStatement "Does not apply to systems used for research." .
+
+:D_research a norma:ExceptionDefeater ;
+    norma:defeatingNorm :FCT_research ;
+    norma:defeatedNorm  :OBL_x ;
+    norma:appliesWhen   :TE_used_for_research_true .</code></pre>
+<p>The exception has its own condition and can itself be defeated. Without a condition, <code>:FCT_research norma:isExceptionTo :OBL_x</code> is enough.</p>
+</div>
+
+<div class="description">
+<p><strong>Example 4: deontic closure and Hohfeldian positions</strong></p>
+<pre><code># asserted
+:n_obl a norma:Obligation ;
+    norma:hasLegalAgent :A ; norma:hasCounterparty :B ;
+    norma:hasLegalAction :act_o .
+
+# derived by the rule set
+:n_obl norma:entailsObligatory :act_o ;
+    norma:entailsPermitted :act_o ;
+    norma:entailsForbidden :act_o_neg ;
+    norma:confersLegalPosition :n_obl_duty_act_o, :n_obl_claim_act_o_B .
+:n_obl_duty_act_o a norma:Duty ;
+    norma:hasPositionHolder :A ;
+    norma:concernsLegalAction :act_o ;
+    norma:isCorrelativeOf :n_obl_claim_act_o_B .
+:n_obl_claim_act_o_B a norma:Claim ;
+    norma:hasPositionHolder :B .</code></pre>
+<p>A reasoner then infers that the Claim's counterparty is A and its content <code>:act_o</code>.</p>
+</div>
+
+<div class="description">
+<p><strong>Example 5: roles, parties and reach (AI Act, Article 25)</strong></p>
+<pre><code>:FCT_Art25_1_counts_as_provider a norma:ConstitutiveRule ;
+    norma:confersRole :Role_Provider .
+
+:OBL_Art16_provider a norma:Obligation ;
+    norma:hasLegalAgent :Role_Provider .
+
+:Case_acme_modified a norma:FactPattern ;
+    norma:holdsTrigger :TE_art25_1b ;            # substantial modification = yes
+    norma:holdsRoleAssignment :RA_acme_provider .
+
+:RA_acme_provider a norma:RoleAssignment ;
+    norma:hasAssignedParty :Party_Acme ;
+    norma:hasAssignedRole  :Role_Provider ;
+    norma:assignedUnderRule :FCT_Art25_1_counts_as_provider .</code></pre>
+<p>In this case the derived evaluation states that Article 16 is <code>Applicable</code> and reaches Acme; in a control case without the modification, only the deployer obligations of Article 26 reach Acme.</p>
+</div>
+
+<div class="description">
+<p><strong>Example 6: counts-as chaining (AI Act, Article 6)</strong></p>
+<table>
+  <tr><th>Case (brute facts)</th><th>Art. 6(2) classification</th><th>Art. 6(3) exception</th><th>Arts. 16 and 26</th></tr>
+  <tr><td>Annex III system</td><td>Applicable</td><td>NotActivated</td><td>Applicable</td></tr>
+  <tr><td>+ narrow procedural task</td><td>Defeated</td><td>Applicable</td><td>NotActivated</td></tr>
+  <tr><td>+ profiling (final subparagraph)</td><td>Applicable (reinstated)</td><td>Defeated</td><td>Applicable</td></tr>
+</table>
+<p>No case asserts "is high-risk": the classification establishes it with <code>establishesTrigger</code>, so its defeat withdraws both obligations and its reinstatement restores them.</p>
+</div>
+
+<h3 id="desc-changes" class="list">Changes from version 1.0</h3>
+<p>No 1.0 term has been removed, so a 1.0 graph still loads and stays consistent. Two changes need attention: <code>norma:UnderReview</code> moved from <code>NormStatus</code> to <code>ReviewStatus</code>, because reviewing an annotation does not change whether a norm is in force; and the literal <code>norma:exception</code> is deprecated in favour of exceptions modelled as norms (Example 3). Term descriptions no longer refer to BPMN or to a specific pipeline. The full list of changes, a migration checklist and a catalogue of the new terms are in <a href="https://github.com/sheyls/NORMA-O/blob/main/release/2.0.0/WHATS-NEW.md" target="_blank">What's new in 2.0</a>.</p>
+
+<h3 id="desc-limitations" class="list">Known limitations</h3>
+<ul>
+  <li>Violations are not computable: <code>norma:sanction</code> is a literal, and contrary-to-duty obligations are not represented.</li>
+  <li>Lex superior is comparable through <code>rankLevel</code> but does not yet orient conflicts automatically.</li>
+  <li>Second-degree conflicts are reported, not resolved.</li>
+  <li>Conflicts and weak permission compare roles, not parties.</li>
+  <li>Role assignments are asserted, not derived, and counts-as chaining only grows.</li>
+  <li>The SHACL shapes the ontology calls for in seven places are not yet provided.</li>
+  <li>Second-order Hohfeldian positions (power, liability, immunity, disability) and conflicts across legal orders are out of scope.</li>
+</ul>
+
+<h3 id="desc-use" class="list">Intended use</h3>
+<p>NORMA-O is designed for the annotation, publication, validation, querying and reuse of legal norms, and for reasoning over them in research and compliance-support applications. Implementations may extend it with domain-specific subclasses, controlled vocabularies or validation constraints, provided they preserve its core commitments and its interoperability with the reused vocabularies.</p>

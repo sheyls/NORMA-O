@@ -1,3 +1,41 @@
 <h2 id="intro" class="list">Introduction <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
-<span class="markdown">
-This is a place holder text for the introduction. The introduction should briefly describe the ontology, its motivation, state of the art and goals.</span>
+
+<p>Regulatory requirements are increasingly expected to be machine-readable: traceable to their legal source, classifiable by type and binding force, and queryable by automated systems. Representing a norm faithfully, however, takes more than recording its text. A norm applies under conditions, admits exceptions, may conflict with other norms, binds some parties toward others, and draws its authority from a source with a place in a hierarchy. NORMA-O is part of ongoing research on how these features can be represented so that machines can store, query and reason over norms without losing what makes them legal.</p>
+
+<h3 id="intro-evolution" class="list">An evolving model</h3>
+
+<p>The ontology is developed in versions, each extending the previous one without breaking it.</p>
+<ul>
+  <li><strong>Version 1.0</strong> asked how a norm and its legal context can be published as structured, traceable data. It introduced the deontic types, constitutive rules, legal conditions and their outcomes, agents, actions, objects and sources, annotation provenance and controlled vocabularies. In 1.0, norms were annotated on BPMN models of regulatory processes: gateways carried the legal conditions, their outgoing branches the condition outcomes, and the annotated elements the norms those outcomes activate. The trigger-event pattern comes from that setting.</li>
+  <li><strong>Version 2.0</strong> asks what can be derived from a body of norms, and why. It adds the logical and legal-theoretical layers needed to compare norms, attribute positions to parties, evaluate concrete cases and explain the outcome. It keeps the 1.0 model, but describes it independently of BPMN, so that norms can be represented whatever notation, tool or method produced them.</li>
+</ul>
+<p>Open questions for future versions, such as the computation of violations, temporal validity, discretion and interpretation, or conflicts across legal orders, are listed in the <a href="#desc-limitations">known limitations</a>.</p>
+
+<h3 id="intro-toolkit" class="list">Relation to the NORMA toolkit</h3>
+
+<p>NORMA-O originated within the NORMA project, whose <a href="https://github.com/sheyls/norma-semantic-toolkit" target="_blank">semantic toolkit</a> uses it as its schema to annotate regulations, build RDF graphs and evaluate compliance. The toolkit is one producer and consumer of NORMA-O, not a requirement: the ontology defines no dependency on it, and the few term descriptions that mention it do so only as an example. Any process that produces norm annotations, whether manual, automated or mixed, can publish them with NORMA-O.</p>
+
+<h3 id="intro-questions" class="list">Questions the ontology answers</h3>
+
+<p>For each norm, NORMA-O records <em>what</em> is regulated, <em>under which conditions</em> it applies, <em>who</em> bears the obligation or right, <em>what action</em> is required, forbidden or permitted, <em>what object</em> the action concerns, <em>from which legal source</em> the norm derives, and <em>who annotated it and how</em>. Version 2.0 adds questions about a body of norms and about cases:</p>
+<ul>
+  <li>Do two provisions state the same thing in different words, contradict each other, or merely conflict?</li>
+  <li>Which duties, claims, privileges and no-rights does each party hold, and toward whom?</li>
+  <li>Does a norm reach a given party, given the role it occupies in a case?</li>
+  <li>In a given case, which norms apply once exceptions, conflicts and repeals are taken into account, and why does a norm not apply?</li>
+  <li>If a classification is defeated, which obligations that depend on it fall with it?</li>
+  <li>What is the prevalence hierarchy of a body of norms, and does it contain cycles?</li>
+  <li>May an agent perform an action because nothing forbids it?</li>
+  <li>Under which rules and assumptions was a derived conclusion computed?</li>
+</ul>
+
+<h3 id="intro-principles" class="list">Design principles</h3>
+<ol>
+  <li><strong>Explicit conditional applicability.</strong> A <code>norma:TriggerEvent</code> links one outcome of a legal condition to the normative content it activates, following the W3C n-ary relation pattern.</li>
+  <li><strong>Reuse of established standards.</strong> PROV-O for provenance, ELI for legal sources, FOAF for agents and SKOS for controlled vocabularies.</li>
+  <li><strong>First-class provenance.</strong> The ontology records not only what a norm says, but who produced the annotation, by which method and with what review status.</li>
+  <li><strong>Grounding in legal theory.</strong> The 2.0 layers follow established accounts: Standard Deontic Logic, Hohfeld's jural relations, Searle's counts-as, Pollock's undercutting and rebutting defeat, Bobbio's criteria for antinomies, Kelsen's hierarchy of norms and Dung's grounded semantics.</li>
+  <li><strong>Explainable derivation.</strong> Derived conclusions are kept apart from asserted ones and record the rules and assumptions that produced them.</li>
+</ol>
+
+<p>The intended readers of this documentation are ontology engineers, legal knowledge engineers, developers of annotation and publication pipelines, and researchers working on formal representations of legal norms. The sections that follow cover the namespaces, an overview of all terms, a description of the model with diagrams and examples, the cross-reference of every term, and the references on which NORMA-O builds. What changed since 1.0 is detailed in <a href="https://github.com/sheyls/NORMA-O/blob/main/release/2.0.0/WHATS-NEW.md" target="_blank">What's new in 2.0</a>.</p>
