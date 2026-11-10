@@ -54,7 +54,7 @@
     <owl:imports rdf:resource="https://w3id.org/def/norma-o"/>
     <owl:versionIRI rdf:resource="https://w3id.org/def/norma-o/deriv/1.0"/>
     <owl:versionInfo>1.0</owl:versionInfo>
-    <foaf:logo rdf:resource="https://sheyls.github.io/NORMA-O/release/2.0.0/norma-o-deriv-v1.svg"/>
+    <foaf:logo rdf:resource="https://raw.githubusercontent.com/sheyls/NORMA-O/main/release/2.0.0/norma-o-deriv-v1.svg"/>
     <schema:includedInDataCatalog rdf:resource="https://zenodo.org/communities/norma"/>
   </owl:Ontology>
 

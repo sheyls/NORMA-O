@@ -56,7 +56,7 @@
         <http://www.w3.org/ns/prov-o> ;
     owl:versionIRI <https://w3id.org/def/norma-o/deriv/1.0> ;
     owl:versionInfo "1.0" ;
-    foaf:logo <https://sheyls.github.io/NORMA-O/release/2.0.0/norma-o-deriv-v1.svg> ;
+    foaf:logo <https://raw.githubusercontent.com/sheyls/NORMA-O/main/release/2.0.0/norma-o-deriv-v1.svg> ;
     schema:includedInDataCatalog <https://zenodo.org/communities/norma> .
 
 # =============================================================================

@@ -64,7 +64,7 @@
     owl:priorVersion <https://w3id.org/def/norma-o/1.0> ;
     owl:versionIRI <https://w3id.org/def/norma-o/2.0> ;
     owl:versionInfo "2.0" ;
-    foaf:logo <https://sheyls.github.io/NORMA-O/release/2.0.0/norma-o-v2.svg> ;
+    foaf:logo <https://raw.githubusercontent.com/sheyls/NORMA-O/main/release/2.0.0/norma-o-v2.svg> ;
     schema:includedInDataCatalog <https://zenodo.org/communities/norma> .
 
 
