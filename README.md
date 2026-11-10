@@ -1,20 +1,41 @@
 # NORMA-O: The NORMA Ontology for Legal Norm Annotations
 
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19765301-blue)](https://doi.org/10.5281/zenodo.19765301)
+[![DOI 2.0](https://img.shields.io/badge/DOI%20v2.0-10.5281%2Fzenodo.24116269-blue)](https://doi.org/10.5281/zenodo.24116269)
+[![DOI all versions](https://img.shields.io/badge/DOI%20all%20versions-10.5281%2Fzenodo.19765301-blue)](https://doi.org/10.5281/zenodo.19765301)
 [![OWL 2 DL](https://img.shields.io/badge/Ontology-OWL%202%20DL-orange)](https://www.w3.org/TR/owl2-overview/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Docs](https://img.shields.io/badge/Documentation-w3id.org%2Fdef%2Fnorma--o-navy)](https://w3id.org/def/norma-o)
 [![Zenodo Community](https://img.shields.io/badge/Zenodo-NORMA%20Community-blue?logo=zenodo)](https://zenodo.org/communities/norma)
 
-**NORMA-O** is an OWL 2 DL ontology for the formal semantic representation of machine-readable legal norm annotations. It provides a structured vocabulary for publishing, integrating, and reusing annotations derived from regulatory texts, while preserving full traceability to the legal source and accountability for the annotation process.
+**NORMA-O** is an OWL 2 DL ontology for representing legal norms as machine-readable, interoperable knowledge. It describes what a norm requires, forbids or allows, under which conditions, for whom and on which legal source it rests, and, since version 2.0, how norms relate to each other, which legal positions they create, how they defeat one another and what applies in a concrete case. Every statement stays traceable to its legal source and to the process that produced it.
 
 > **IRI:** `https://w3id.org/def/norma-o`  
-> **Version IRI:** `https://w3id.org/def/norma-o/2.0` (current) · `https://w3id.org/def/norma-o/1.0` (prior)  
+> **Version IRI:** `https://w3id.org/def/norma-o/2.0` (current) · `https://w3id.org/def/norma-o/1.0` (previous)  
 > **Preferred prefix:** `norma`  
 > **Derivation module:** `https://w3id.org/def/norma-o/deriv` (prefix `normad`)  
-> **Documentation:** [release 2.0](release/2.0.0/) · [WIDOCO HTML for 1.0](https://w3id.org/def/norma-o/1.0)
+> **DOI (2.0):** [10.5281/zenodo.24116269](https://doi.org/10.5281/zenodo.24116269)  
+> **Documentation:** [w3id.org/def/norma-o](https://w3id.org/def/norma-o) · [What's new in 2.0](release/2.0.0/WHATS-NEW.md)
 
-This ontology is the TBox component of the **NORMA Semantic Toolkit** — see [`sheyls/norma-semantic-toolkit`](https://github.com/sheyls/norma-semantic-toolkit) for the full toolkit including the BPMN annotation methodology, knowledge graph construction pipeline, SWRL rule engine, and REST API.
+---
+
+## Research context
+
+NORMA-O is part of ongoing research on how legal norms can be represented so that machines can store, query and reason over them without losing the nuance that makes them legal: their conditions, their exceptions, the parties they bind and the authority they rest on. The ontology is not tied to a particular authoring tool, notation or regulation; any process that produces norm annotations, whether manual, automated or mixed, can publish them with it.
+
+The work is developed in versions, each extending the previous one without breaking it:
+
+| Version | Research question | Contribution |
+|---|---|---|
+| **1.0** | How can a norm and its legal context be published as structured, traceable data? | Deontic types, constitutive rules, conditions and their outcomes, agents, actions, objects and sources, annotation provenance and controlled vocabularies, designed for norms annotated on BPMN models of regulatory processes |
+| **2.0** | What can be derived from a body of norms, and why? | Deontic logic grounding, Hohfeldian positions, roles and cases, defeasibility and prevalence, counts-as chaining, and a derivation module recording how and under which assumptions each conclusion was obtained |
+
+In 1.0, norms were annotated on BPMN models of regulatory processes: gateways carried the legal conditions, their outgoing branches the condition outcomes, and the annotated elements the norms they activate. The trigger-event pattern and several 1.0 term descriptions come from that setting. Version 2.0 keeps the same model but describes it independently of BPMN, so that norms can be represented whatever notation or method produced them.
+
+Future versions will continue along this line. Open questions, such as temporal validity, richer modelling of discretion and interpretation, and cross-jurisdiction alignment, are listed among the [known limitations](release/2.0.0/WHATS-NEW.md#9-known-limitations) of 2.0.
+
+### Relation to the NORMA toolkit
+
+NORMA-O originated within the **NORMA project**, whose [semantic toolkit](https://github.com/sheyls/norma-semantic-toolkit) uses it as its schema to annotate regulations, build RDF graphs and evaluate compliance. The toolkit is one producer and consumer of NORMA-O, not a requirement: the ontology defines no dependency on it, and the few term descriptions that mention it do so only as an example of use.
 
 ---
 
@@ -35,33 +56,40 @@ Version 2.0 keeps every term of 1.0 and adds the means to state how norms relate
 
 ## Table of Contents
 
-- [What's new in 2.0](#whats-new-in-20)
-- [Overview](#overview)
-- [Methodology: LOT](#methodology-lot)
-- [Competency Questions](#competency-questions)
-- [Ontology Diagram](#ontology-diagram)
-- [Scope](#scope)
-- [Principal Classes](#principal-classes)
-- [Statistics](#statistics)
-- [Alignments](#alignments)
-- [Downloads](#downloads)
-- [Ontology Requirements Specification Document](#ontology-requirements-specification-document)
-- [Citation](#citation)
-- [License](#license)
+- [NORMA-O: The NORMA Ontology for Legal Norm Annotations](#norma-o-the-norma-ontology-for-legal-norm-annotations)
+  - [Research context](#research-context)
+    - [Relation to the NORMA toolkit](#relation-to-the-norma-toolkit)
+  - [What's new in 2.0](#whats-new-in-20)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Methodology: LOT](#methodology-lot)
+  - [Competency Questions](#competency-questions)
+  - [Ontology Diagram](#ontology-diagram)
+  - [Scope](#scope)
+  - [Principal Classes](#principal-classes)
+  - [Derivation module and rule set](#derivation-module-and-rule-set)
+  - [Statistics](#statistics)
+  - [Alignments](#alignments)
+  - [Downloads](#downloads)
+  - [Ontology Requirements Specification Document](#ontology-requirements-specification-document)
+  - [Citation](#citation)
+  - [License](#license)
+  - [Related resources](#related-resources)
 
 ---
 
 ## Overview
 
-Regulatory requirements are increasingly expected to be machine-readable: traceable to their legal source, classifiable by type and binding force, and queryable in automated compliance pipelines. NORMA-O provides the semantic backbone for this, enabling legal knowledge engineers and developers to publish normative content as structured, interoperable knowledge graph resources.
+Regulatory requirements are increasingly expected to be machine-readable: traceable to their legal source, classifiable by type and binding force, and queryable in automated compliance pipelines. NORMA-O provides a semantic model for this, so that legal knowledge engineers, researchers and developers can publish normative content as structured, interoperable RDF graphs and reason over it.
 
 The ontology models normative content together with the legal context needed to interpret it. It distinguishes between regulative norms (obligations, prohibitions, permissions, recommendations, negative recommendations) and constitutive rules (definitional or classificatory statements), and represents each legal element — agent, action, object, condition, source — as a distinct entity rather than a free-text blob.
 
-Three design principles shape the model:
+Four design principles shape the model:
 
 1. **Explicit conditional applicability** — a `norma:TriggerEvent` links a specific condition outcome to the normative content it activates, following the W3C n-ary relation pattern. This makes branch-sensitive activation queryable rather than buried in unstructured text.
 2. **Reuse of established standards** — PROV-O for annotation provenance, ELI for legal resource references, FOAF for agent metadata, and SKOS for controlled classification values.
 3. **First-class provenance** — the ontology records not only what a norm says, but who produced the annotation, by what method, and with what review status.
+4. **Explainable derivation** (2.0) — derived conclusions are kept apart from asserted ones and record the rules and assumptions that produced them, so every result can be traced back and questioned.
 
 ---
 
@@ -71,11 +99,11 @@ NORMA-O was developed following the **LOT (Linked Open Terms) methodology** for 
 
 | LOT Activity | Output in NORMA-O |
 |---|---|
-| Requirements specification | Competency questions (see below) |
+| Requirements specification | Competency questions (see below), extended in 2.0 |
 | Conceptualisation | Conceptual model — classes, relations, controlled vocabularies |
 | Implementation | OWL 2 DL axiomatisation in Turtle and RDF/XML |
-| Publication | Persistent IRI (`w3id.org/def/norma-o`), WIDOCO HTML documentation, Zenodo release |
-| Evaluation | SPARQL-based CQ evaluation against the EU AI Act ABox |
+| Publication | Persistent IRI (`w3id.org/def/norma-o`), WIDOCO HTML documentation via OnToology, Zenodo release with DOI |
+| Evaluation | SPARQL-based CQ evaluation against an EU AI Act ABox; in 2.0 also HermiT consistency and satisfiability checks, OOPS! pitfall scan and 140 automated derivation checks |
 
 > **Reference:** Poveda-Villalón, M., Gómez-Pérez, A., & Suárez-Figueroa, M. C. (2022). LOT: An industrial oriented ontology engineering framework. *Engineering Applications of Artificial Intelligence*, 111, 104755. https://doi.org/10.1016/j.engappai.2022.104755
 
@@ -98,6 +126,21 @@ The following competency questions (CQs) guided the ontology design and serve as
 | CQ9 | What is the current lifecycle status of a norm (active, superseded, repealed)? |
 | CQ10 | Which normative statements are activated when a given condition outcome holds? |
 
+Version 2.0 adds the following questions:
+
+| ID | Competency Question |
+|---|---|
+| CQ11 | Do two provisions state the same thing in different words? |
+| CQ12 | Do two norms contradict each other, or are they merely incompatible? |
+| CQ13 | Which duties, claims, privileges and no-rights does each party hold, and toward whom? |
+| CQ14 | Does a norm reach a given party, given the role it occupies in a case? |
+| CQ15 | In a given case, which norms apply once exceptions, conflicts and repeals are taken into account? |
+| CQ16 | Why does a norm not apply in a given case? |
+| CQ17 | If a classification is defeated, which obligations that depend on it fall with it? |
+| CQ18 | What is the prevalence hierarchy of a body of norms, and does it contain cycles? |
+| CQ19 | May an agent perform an action because nothing forbids it? |
+| CQ20 | Under which rules and assumptions was a derived conclusion computed? |
+
 ---
 
 ## Ontology Diagram
@@ -119,12 +162,17 @@ The ontology covers the following aspects of legal norm annotations:
 - **Legal conditions and their evaluated outcomes** — including branch-sensitive activation via the `norma:TriggerEvent` n-ary relation pattern
 - **Legal agents, actions, objects, and sources**
 - **Provenance and annotation metadata** — extraction method, review status, lifecycle status, and source traceability
+- **Relations between norms** (2.0) — deontic equivalence, contradiction and conflict, defeat and prevalence
+- **Legal positions, roles and cases** (2.0) — Hohfeldian positions, legal roles, parties and fact patterns
+- **Derived conclusions** (2.0) — the `normad` module records how, from what and under which assumptions conclusions were derived
 
 The ontology does not model procedural or institutional rules beyond what is necessary to contextualise normative content, nor does it encode substantive regulatory knowledge — that is the role of the ABox.
 
 ---
 
 ## Principal Classes
+
+**Introduced in 1.0**
 
 | Class | Description |
 |---|---|
@@ -152,6 +200,48 @@ The ontology does not model procedural or institutional rules beyond what is nec
 | `norma:ReviewStatus` | SKOS concept class for review state (pending review, reviewed, …) |
 | `norma:ExtractionMethod` | SKOS concept class for annotation method (manual, automated, semi-automated) |
 
+**Introduced in 2.0** (selection)
+
+| Class | Description |
+|---|---|
+| `norma:Facultative`, `norma:WeakPermission` | Deontic statuses of Standard Deontic Logic: optional actions, and permission by absence of prohibition |
+| `norma:LegalPosition` | Hohfeldian position held by a party toward a counterparty: `Duty`, `Claim`, `Privilege`, `NoRight` |
+| `norma:LegalRole`, `norma:LegalParty`, `norma:RoleAssignment` | Roles defined by law, the parties of a case and who occupies which role |
+| `norma:FactPattern` | A concrete case against which norms are evaluated |
+| `norma:Defeater` | Defeat of a norm by exception (`ExceptionDefeater`), conflict (`ConflictDefeater`) or repeal (`TemporalDefeater`) |
+| `norma:ResolutionPrinciple` | SKOS concept class for conflict-resolution principles: lex superior, lex specialis and lex posterior |
+| `normad:DerivationActivity` | The activity that produced a derived graph, with its rule set and assumptions (derivation module) |
+
+---
+
+## Derivation module and rule set
+
+Version 2.0 separates what is **asserted** about norms from what is **derived** from them. An annotation graph states norms, their conditions, defeaters and cases; a derived graph states what follows from it: the deontic closure, legal positions, relations between norms, the prevalence ordering and, for each case, which norms apply. A derived graph is regenerated from the annotation graph, never edited by hand, and never merged back into it.
+
+**The `normad` module** (`https://w3id.org/def/norma-o/deriv`, files [`norma-o-deriv.ttl`](release/2.0.0/norma-o-deriv.ttl) / [`.rdf`](release/2.0.0/norma-o-deriv.rdf)) is a small OWL 2 DL vocabulary that imports NORMA-O and PROV-O to describe derived graphs:
+
+| Class | Purpose |
+|---|---|
+| `normad:DerivationActivity` | One run of a rule set (a `prov:Activity`), with its inputs and the assumptions it relied on |
+| `normad:PrevalenceOrdering` | The prevalence levels computed for the whole body of norms or for one case |
+| `normad:NormEvaluation` | The outcome for one norm: its level and, per case, its applicability status and the parties it reaches |
+| `normad:PrevalenceCycle` | A cycle found among defeat relations, reported with its kind rather than silently resolved |
+| `normad:ApplicabilityStatus` | `Invalid`, `NotActivated`, `Applicable`, `Defeated` or `Undecided` |
+| `normad:Assumption` | The readings a conclusion rests on, such as a closed graph, a closed case description or grounded semantics |
+| `normad:CycleKind` | Second-degree conflict, annotation contradiction or irresoluble antinomy |
+
+Recording assumptions makes each conclusion explainable: "this obligation does not apply" is stated together with why (its status and the defeaters that reach it) and under which readings it was computed.
+
+**The reference rule set** ([`deriv/`](release/2.0.0/deriv/)) is one way of producing such graphs. It consists of 19 SPARQL `CONSTRUCT` rules for the closure, positions and relations between norms, plus a Python implementation of the prevalence ordering (topological levels, cycle detection and grounded semantics for defeat):
+
+```bash
+pip install -r release/2.0.0/deriv/requirements.txt
+python release/2.0.0/deriv/derive.py my-norms.ttl my-cases.ttl -o derived.ttl
+python release/2.0.0/deriv/tests/check_deriv.py   # 140 checks
+```
+
+Other producers may derive the same conclusions with different tools; the `normad` vocabulary, not the rule set, is the part of the ontology. Section [5 of What's new](release/2.0.0/WHATS-NEW.md#5-what-can-now-be-derived) details what can be derived with an OWL reasoner alone and what needs the rule set.
+
 ---
 
 ## Statistics
@@ -164,7 +254,7 @@ The ontology does not model procedural or institutional rules beyond what is nec
 | Named individuals (TBox controlled vocabulary) | 23 | 33 | 16 |
 | OWL profile | OWL 2 DL | OWL 2 DL | OWL 2 DL |
 
-The principal classes listed above are those of 1.0. The classes added in 2.0 are catalogued in [WHATS-NEW.md](release/2.0.0/WHATS-NEW.md#appendix-a--catalogue-of-new-core-terms).
+The full list of terms added in 2.0 is catalogued in [WHATS-NEW.md](release/2.0.0/WHATS-NEW.md#appendix-a--catalogue-of-new-core-terms).
 
 ---
 
@@ -262,13 +352,11 @@ You are free to share and adapt this material for any purpose, including commerc
 
 ---
 
-## Part of the NORMA Ecosystem
-
-NORMA-O is the TBox component of a broader open resource for legal knowledge engineering:
+## Related resources
 
 | Resource | Description |
 |---|---|
-| [`sheyls/NORMA-O`](https://github.com/sheyls/NORMA-O) | This repository — ontology TBox only |
-| [`sheyls/norma-semantic-toolkit`](https://github.com/sheyls/norma-semantic-toolkit) | Full toolkit: annotation methodology, KG construction pipeline, SWRL engine, REST API, web app |
-| [WIDOCO documentation (1.0)](https://w3id.org/def/norma-o/1.0) | Full HTML documentation with cross-reference of all 1.0 terms |
+| [`sheyls/NORMA-O`](https://github.com/sheyls/NORMA-O) | This repository: ontology, derivation module and reference rule set |
+| [Documentation](https://w3id.org/def/norma-o) | HTML documentation generated with WIDOCO, with the cross-reference of all terms ([1.0](https://w3id.org/def/norma-o/1.0) · [2.0](https://w3id.org/def/norma-o/2.0)) |
+| [`sheyls/norma-semantic-toolkit`](https://github.com/sheyls/norma-semantic-toolkit) | NORMA toolkit, one application of NORMA-O for annotating regulations and building RDF graphs |
 | [Zenodo community](https://zenodo.org/communities/norma) | All releases and supplementary materials |
